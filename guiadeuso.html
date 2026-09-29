@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es" style="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>Presentación de la tool: Bancos - Guía de Acceso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Geist:wght@300;400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#01184C',
+                            'navy-dark': '#000F33',
+                            'navy-light': '#0D2A72',
+                            blue: '#1777FF',
+                            'blue-light': '#E4EFF8',
+                            'blue-soft': '#C2E4F4',
+                            surface: '#F7F9FC',
+                            card: '#FFFFFF',
+                            border: '#E2E8F0',
+                        }
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        geist: ['Geist', 'sans-serif'],
+                        mono: ['Geist Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            margin: 0;
+            background-color: #01184C;
+            font-family: 'Geist', sans-serif;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body
+    class="w-[1920px] h-[1080px] relative flex flex-col justify-between p-24 select-none bg-[#01184C] overflow-hidden">
+
+    <!-- Subtle architectural background accents -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+            class="absolute -right-40 -top-40 w-[900px] h-[900px] rounded-full bg-radial from-[#1777FF]/25 to-transparent blur-3xl">
+        </div>
+        <div
+            class="absolute left-1/3 -bottom-48 w-[800px] h-[800px] rounded-full bg-radial from-[#0D2A72]/50 to-transparent blur-2xl">
+        </div>
+        <!-- Clean geometry grid lines -->
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]">
+        </div>
+    </div>
+
+    <!-- Top Header / Brand Bar -->
+    <div class="relative z-10 flex items-center justify-between">
+        <div class="flex items-center gap-6">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9oRFV-T4xXUtwxo_F5jrPRv9lm8XIyrsur3_QbXJeKysS8t2OXivF5r4D1N9XeNdWkTNFCZckaNWrwx_i4z6sXaHQHwMt2JPcyTuYeuXmBZ6KDPtxEy4bhEJlSK7KwJ5k5TsRFVwyIGCAzKkdMoljYuC2KSm_7HdeiEeozVszYWTjDCuc03gcxn51Jy6VsUMHoagxrSLOl9U9SCUdUpETO9_b8H5nbVVOQvdIRNK6riMPXbHw5UzX1qmRpygD-WH04Vg"
+                alt="Trasa - Empresa B Certificada" class="h-12 object-contain brightness-100">
+            <div class="h-8 w-px bg-white/20"></div>
+            <span class="text-white/70 font-outfit text-xl font-medium tracking-wide uppercase">Intranet&nbsp;</span>
+        </div>
+        <div
+            class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/15">
+            <svg class="w-4 h-4 text-[#C2E4F4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                </path>
+            </svg>
+            <span class="text-sm font-medium text-white/90 tracking-wider uppercase font-outfit">Guía Funcional ·
+                Accesos y Permisos</span>
+        </div>
+    </div>
+
+    <!-- Hero Content Center -->
+    <div class="relative z-10 w-full my-auto flex flex-col justify-center pt-4">
+
+        <div class="flex items-center gap-3 mb-2">
+
+        </div>
+
+        <h1 class="text-6xl font-extrabold font-outfit tracking-tight text-white leading-[1.1] mb-3">
+            Bancos — Guía: <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-[#1777FF] via-[#70A8FF] to-[#C2E4F4]">Acceso</span>
+        </h1>
+        <p class="text-lg text-white/80 font-light max-w-4xl mb-7">
+            Cómo entrar a la tool <code
+                class="bg-white/10 px-2.5 py-0.5 rounded text-white/90 font-mono text-base font-semibold border border-white/10">bancos</code>,
+            qué secciones ves y qué podés hacer en cada una según tu nivel de acceso.
+        </p>
+
+        <!-- Main Grid Layout -->
+        <div class="grid grid-cols-12 gap-8">
+
+            <!-- Columna Izquierda (4 Cols) -->
+            <div class="col-span-4 flex flex-col gap-6">
+
+                <!-- Cómo pedir acceso -->
+                <div
+                    class="bg-white/5 border border-white/10 rounded-3xl p-7 backdrop-blur-md relative overflow-hidden flex-1 shadow-lg">
+                    <h3 class="font-outfit font-bold text-2xl text-white mb-5 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-white/10 text-[#70A8FF] flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                                </path>
+                            </svg>
+                        </div>
+                        ¿Cómo pedir acceso?
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#1777FF]/25 border border-[#1777FF]/50 text-[#C2E4F4] flex items-center justify-center font-bold text-sm shrink-0">
+                                1</div>
+                            <p class="text-white/85 text-[15px] leading-relaxed pt-0.5">La tool <strong
+                                    class="text-white">bancos</strong> tiene que estar habilitada para tu empresa.</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#1777FF]/25 border border-[#1777FF]/50 text-[#C2E4F4] flex items-center justify-center font-bold text-sm shrink-0">
+                                2</div>
+                            <p class="text-white/85 text-[15px] leading-relaxed pt-0.5">Un administrador te asigna la
+                                tool desde: <br><span
+                                    class="text-[#70A8FF] font-medium text-xs font-mono mt-1 inline-block bg-white/5 px-2 py-0.5 rounded border border-white/10">Empresa
+                                    &gt; Equipo &gt; Accesos por tool</span></p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#1777FF]/25 border border-[#1777FF]/50 text-[#C2E4F4] flex items-center justify-center font-bold text-sm shrink-0">
+                                3</div>
+                            <p class="text-white/85 text-[15px] leading-relaxed pt-0.5">Cuando esté asignada, <strong
+                                    class="text-white">Bancos</strong> aparece en el home y podés ingresar directamente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conceptos comunes -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md shadow-lg">
+                    <h3 class="font-outfit font-bold text-lg text-white mb-4 flex items-center gap-2.5">
+                        <span class="w-2 h-2 rounded-full bg-[#70A8FF]"></span>
+                        Conceptos comunes
+                    </h3>
+                    <ul class="space-y-3.5">
+                        <li class="flex items-start gap-3 text-white/80 text-xs leading-relaxed">
+                            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-[#70A8FF] shrink-0"></div>
+                            <div class=""><strong class="text-white font-medium">Automática / Manual (Origen):</strong>
+                                Las automáticas reciben el saldo desde DW; las manuales dependen de una carga en
+                                <em>Carga manual</em>.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 text-white/80 text-xs leading-relaxed">
+                            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-[#70A8FF] shrink-0"></div>
+                            <div class="">Las fechas se muestran en <code
+                                    class="font-mono text-[#C2E4F4] bg-white/10 px-1 py-0.5 rounded">DD/MM/AAAA</code> y
+                                los montos en formato argentino (<code
+                                    class="font-mono text-[#C2E4F4] bg-white/10 px-1 py-0.5 rounded">1.234,56</code>).
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 text-white/80 text-xs leading-relaxed">
+                            <div class="mt-1 w-1.5 h-1.5 rounded-full bg-red-400 shrink-0"></div>
+                            <div class="">Los saldos negativos indican <strong
+                                    class="text-red-300 font-semibold">descubierto bancario</strong>.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Columna Derecha (8 Cols) -->
+            <div class="col-span-8 flex flex-col gap-5">
+
+                <!-- Niveles de Acceso -->
+                <div
+                    class="bg-[#031d5b]/80 border border-[#1777FF]/40 rounded-3xl p-7 backdrop-blur-md flex-1 shadow-2xl relative">
+                    <div class="flex items-center justify-between mb-5">
+                        <h3 class="font-outfit font-bold text-2xl text-white tracking-tight flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#70A8FF] shadow-lg"></span>
+                            Niveles de acceso dentro de Bancos
+                        </h3>
+                        <span
+                            class="text-xs font-mono text-[#C2E4F4] bg-[#1777FF]/25 px-3.5 py-1.5 rounded-full border border-[#1777FF]/50 font-semibold shadow-sm">3
+                            Perfiles</span>
+                    </div>
+
+                    <div class="space-y-3.5">
+                        <!-- Nivel 1: Consulta -->
+                        <div
+                            class="bg-white/10 border border-white/15 rounded-2xl p-5 flex gap-6 items-center hover:bg-white/20 transition-colors shadow-sm">
+                            <div class="w-1/3 shrink-0">
+                                <h4 class="text-xl font-bold text-white font-outfit mb-1.5">Consulta <span
+                                        class="text-xs font-normal text-white/70 block mt-0.5">(Acceso base)</span></h4>
+                                <div
+                                    class="inline-flex items-center gap-1.5 bg-[#1777FF]/25 text-[#C2E4F4] px-3 py-1 rounded-md text-xs font-mono font-semibold border border-[#1777FF]/50 shadow-sm">
+                                    Asignación: member
+                                </div>
+                            </div>
+                            <div class="w-2/3 border-l border-white/15 pl-6">
+                                <p class="text-white text-sm leading-relaxed">
+                                    <strong class="text-[#70A8FF] font-bold">Ve:</strong> Dashboard, Saldos, Histórico,
+                                    Maestro de Cuentas.<br>
+                                    <strong class="text-[#C2E4F4] font-bold">Puede:</strong> Filtrar, exportar datos y
+                                    marcar cuentas favoritas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Nivel 2: Carga Manual -->
+                        <div
+                            class="bg-white/10 border border-white/15 rounded-2xl p-5 flex gap-6 items-center hover:bg-white/20 transition-colors shadow-sm">
+                            <div class="w-1/3 shrink-0">
+                                <h4 class="text-xl font-bold text-white font-outfit mb-1.5">Carga manual</h4>
+                                <div
+                                    class="inline-flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-md text-xs font-mono font-semibold border border-emerald-500/40 shadow-sm">
+                                    Permiso: carga-manual-saldos
+                                </div>
+                            </div>
+                            <div class="w-2/3 border-l border-white/15 pl-6">
+                                <p class="text-white text-sm leading-relaxed">
+                                    <strong class="text-[#70A8FF] font-bold">Ve:</strong> Todo lo de Consulta.<br>
+                                    <strong class="text-emerald-300 font-bold">Suma:</strong> Sección <strong
+                                        class="text-white font-bold">Carga manual.</strong>&nbsp;Otorgado por un admin
+                                    de bancos.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Nivel 3: Admin -->
+                        <div
+                            class="bg-white/10 border border-white/15 rounded-2xl p-5 flex gap-6 items-center hover:bg-white/20 transition-colors shadow-sm">
+                            <div class="w-1/3 shrink-0">
+                                <h4 class="text-xl font-bold text-white font-outfit mb-1.5">Admin de bancos</h4>
+                                <div
+                                    class="inline-flex items-center gap-1.5 bg-purple-500/25 text-purple-200 px-3 py-1 rounded-md text-xs font-mono font-semibold border border-purple-500/40 shadow-sm">
+                                    Asignación: admin
+                                </div>
+                            </div>
+                            <div class="w-2/3 border-l border-white/15 pl-6">
+                                <p class="text-white text-sm leading-relaxed">
+                                    <strong class="text-[#70A8FF] font-bold">Ve:</strong> Todo lo anterior + <strong
+                                        class="text-purple-200 font-bold">Configuración.</strong><br>
+                                    <strong class="text-purple-300 font-bold">Puede:</strong> Eliminar cargas manuales,
+                                    otorgar permisos de carga, alta y edición de cuentas y bancos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <span
+                            class="text-xs font-medium text-[#C2E4F4] bg-[#1777FF]/20 px-5 py-2 rounded-full border border-[#1777FF]/40 inline-flex items-center gap-2 shadow-sm">
+                            <span class="text-sm">💡</span> <strong class="text-white font-semibold">Nota:</strong> Si
+                            no ves una sección, tu nivel no la incluye. Pedísela a un admin de bancos.
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Secciones Resumen -->
+                <div class="grid grid-cols-3 gap-3.5">
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-2xl p-3.5 hover:bg-white/10 transition-colors">
+                        <h5 class="text-[#70A8FF] font-bold text-sm mb-1 font-outfit">Dashboard</h5>
+                        <p class="text-white/70 text-xs">Vista general de saldos de todas las cuenta y bancos.</p>
+                    </div>
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-2xl p-3.5 hover:bg-white/10 transition-colors">
+                        <h5 class="text-[#70A8FF] font-bold text-sm mb-1 font-outfit">Saldos</h5>
+                        <p class="text-white/70 text-xs">Último saldo de cada cuenta.</p>
+                    </div>
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-2xl p-3.5 hover:bg-white/10 transition-colors">
+                        <h5 class="text-[#70A8FF] font-bold text-sm mb-1 font-outfit">Histórico</h5>
+                        <p class="text-white/70 text-xs">Evolución de saldos en el tiempo.</p>
+                    </div>
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-2xl p-3.5 hover:bg-white/10 transition-colors">
+                        <h5 class="text-[#70A8FF] font-bold text-sm mb-1 font-outfit">Maestro de Cuentas</h5>
+                        <p class="text-white/70 text-xs">Listado y estado de las cuentas.</p>
+                    </div>
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-2xl p-3.5 hover:bg-white/10 transition-colors">
+                        <h5 class="text-emerald-400 font-bold text-sm mb-1 font-outfit">Carga manual</h5>
+                        <p class="text-white/70 text-xs">Cargar saldos no automatizados.</p>
+                    </div>
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-2xl p-3.5 hover:bg-white/10 transition-colors">
+                        <h5 class="text-purple-400 font-bold text-sm mb-1 font-outfit">Configuración</h5>
+                        <p class="text-white/70 text-xs">Alta/edición de datos y permisos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide Footer -->
+    <div
+        class="relative z-10 flex items-center justify-between border-t border-white/10 pt-5 text-xs text-white/50 font-light mt-auto">
+        <div class="">Trasa Intranet · Documentación Funcional de Producto</div>
+        <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] text-white/40">1920 × 1080 (16:9)</span>
+            <span
+                class="font-mono text-xs tracking-widest text-white/60 bg-white/5 px-3 py-1 rounded-full border border-white/10">GUÍA
+                DE ACCESO</span>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

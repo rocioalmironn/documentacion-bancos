@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full" style="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>Presentación Tool Bancos - Slide 4 (Guía: Saldos 1920x1080)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Geist', 'system-ui', 'sans-serif'], display: ['Outfit', 'system-ui', 'sans-serif'], mono: ['Geist Mono', 'ui-monospace', 'monospace'] }, colors: { brand: { navy: '#01184C', blue: '#1777FF', bg: '#F7F9FC', border: '#E2E8F0', muted: '#718096' } } } } }</script>
+    <style>
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: #F7F9FC;
+            color: #01184C;
+            font-family: 'Geist', system-ui, sans-serif
+        }
+
+        .slide-container {
+            width: 1920px;
+            height: 1080px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px 72px 36px;
+            box-sizing: border-box
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(1, 24, 76, .03) 1px, transparent 1px), linear-gradient(to bottom, rgba(1, 24, 76, .03) 1px, transparent 1px)
+        }
+    </style>
+</head>
+
+<body class="grid-bg select-none">
+    <div class="slide-container">
+        <header class="flex items-center justify-between border-b border-[#E2E8F0] pb-6">
+            <div class="flex items-center space-x-6">
+                <div class="bg-white px-4 py-2 rounded-xl border border-[#E2E8F0] shadow-sm flex items-center">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7NpqNRUifmaWBEVZIYZEbbJGeW68gSbHuzkmaOrykSBo3KxvsCjqEnwps97oeSamCnrJnsyz1VyX44LBUH8opwKmFKeGwSWf-O9D1IbzTaf-n9G6XONgwQ4shWPZwHnesykGaR0liZH6PA8BejPBZqMEt4j5Gse7hM-5mWqOIv-zjJGvR5sJ7Dij0aDrbYradSynz4j8ADpvWCALeeu9YK62f3bpiXojJ3dTpkZWtLHPBeJmDFNm3vd7dzs0j79mre7Y"
+                        alt="Trasa" class="h-8 w-auto object-contain filter invert">
+                </div>
+                <div class="h-8 w-[1px] bg-[#E2E8F0]"></div>
+                <div>
+                    <p class="text-xs font-semibold tracking-wider text-brand-muted uppercase">Trasa Intranet ·
+                        Herramientas Corporativas</p>
+                    <h2 class="text-base font-bold text-brand-navy font-display tracking-tight">Presentación de la tool:
+                        Bancos</h2>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3"><span
+                    class="text-xs font-semibold text-brand-muted uppercase tracking-wider">Documentación
+                    Funcional</span>
+                <div
+                    class="px-3.5 py-1.5 rounded-full bg-[#1777FF]/10 text-brand-blue font-semibold text-xs tracking-wide border border-[#1777FF]/20">
+                    Guía: Saldos</div>
+            </div>
+        </header>
+        <main class="grid grid-cols-12 gap-8 my-auto pt-4">
+            <div class="col-span-4 flex flex-col justify-between space-y-6">
+                <div class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01184C]/5 text-brand-navy font-semibold text-xs uppercase tracking-wider mb-4 border border-[#01184C]/10">
+                        <span class="w-2 h-2 rounded-full bg-brand-blue"></span>Sección de consulta</div>
+                    <h1 class="text-3xl font-extrabold text-brand-navy font-display tracking-tight mb-2">Bancos — Guía:
+                        Saldos</h1>
+                    <div class="mt-4 p-3.5 bg-[#F7F9FC] rounded-xl border border-[#E2E8F0] space-y-2 text-xs">
+                        <div class="flex items-center justify-between"><span class="text-brand-muted font-medium">Ruta
+                                del sistema:</span><code
+                                class="font-mono bg-white px-2 py-0.5 rounded text-brand-blue font-semibold border border-[#E2E8F0]">/tools/bancos/saldos</code>
+                        </div>
+                        <div class="flex items-center justify-between pt-1 border-t border-[#E2E8F0]/60"><span
+                                class="text-brand-muted font-medium">Nivel de acceso:</span><span
+                                class="font-semibold text-brand-navy">Cualquier usuario con acceso a bancos</span></div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm flex-1 flex flex-col justify-center">
+                    <h3 class="font-display font-bold text-lg text-brand-navy mb-3">¿Para qué sirve?</h3>
+                    <div class="border-l-4 border-brand-blue pl-4 py-1 mb-4 bg-blue-50/40 rounded-r-xl">
+                        <p class="text-[15px] font-medium text-brand-navy leading-relaxed">Lista el último saldo
+                            conocido de cada cuenta.</p>
+                    </div>
+                    <p class="text-sm text-brand-muted leading-relaxed">El saldo puede venir del <strong
+                            class="text-brand-navy font-semibold">DW</strong> (origen <em>Automática</em>) o haber sido
+                        <strong class="text-brand-navy font-semibold">cargado a mano</strong> (origen <em>Manual</em>).
+                    </p>
+                </div>
+            </div>
+            <div class="col-span-8 flex flex-col space-y-6">
+                <div class="grid grid-cols-2 gap-6">
+                    <div
+                        class="bg-white rounded-2xl p-5 border border-[#E2E8F0] shadow-sm flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-2.5 pb-2.5 border-b border-[#E2E8F0]">
+                            <div class="flex items-center gap-2.5">
+                                <div
+                                    class="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-sm shrink-0">
+                                    🔍</div>
+                                <div>
+                                    <h3 class="font-display font-bold text-[15px] text-brand-navy leading-none">Filtros
+                                        y búsqueda</h3>
+                                    <p class="text-[11px] text-brand-muted mt-0.5">Parámetros de segmentación de saldos
+                                    </p>
+                                </div>
+                            </div><span
+                                class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 shrink-0 border border-[#E2E8F0]">7
+                                filtros + búsqueda</span>
+                        </div>
+                        <div class="space-y-2.5">
+                            <div
+                                class="flex items-center gap-2 bg-[#F7F9FC] border border-[#E2E8F0] rounded-xl px-3 py-1.5 shadow-sm">
+                                <span class="text-xs text-brand-muted">🔍</span><span
+                                    class="text-xs text-brand-navy font-medium flex-1">Buscar por empresa, banco, cuenta
+                                    o CUIT...</span><span
+                                    class="text-[10px] font-mono bg-white border border-[#E2E8F0] px-1.5 py-0.5 rounded text-brand-muted font-semibold">⌘K</span>
+                                <div class="h-4 w-[1px] bg-[#E2E8F0]"></div>
+                                <div
+                                    class="flex items-center gap-1 text-[11px] font-semibold text-brand-blue bg-blue-50 px-2 py-0.5 rounded-lg border border-blue-100">
+                                    <span class="">⚙</span> Filtros activos</div>
+                            </div>
+                            <div class="bg-white rounded-xl border border-[#E2E8F0] p-2.5 space-y-2 shadow-sm">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div class="bg-[#F7F9FC] p-1.5 rounded-lg border border-[#E2E8F0]"><span
+                                            class="block text-[10px] font-bold text-brand-muted tracking-wider uppercase leading-tight">Banco</span><span
+                                            class="text-[11px] font-medium text-brand-navy truncate block">Todos (12
+                                            bancos) ▾</span></div>
+                                    <div class="bg-[#F7F9FC] p-1.5 rounded-lg border border-[#E2E8F0]"><span
+                                            class="block text-[10px] font-bold text-brand-muted tracking-wider uppercase leading-tight">Empresa</span><span
+                                            class="text-[11px] font-medium text-brand-navy truncate block">Todas las
+                                            razones ▾</span></div>
+                                    <div class="bg-[#F7F9FC] p-1.5 rounded-lg border border-[#E2E8F0]"><span
+                                            class="block text-[10px] font-bold text-brand-muted tracking-wider uppercase leading-tight">Cuenta</span><span
+                                            class="text-[11px] font-medium text-brand-navy truncate block">Todas
+                                            ▾</span></div>
+                                </div>
+                                <div class="grid grid-cols-4 gap-2 pt-1 border-t border-[#E2E8F0]/60">
+                                    <div class="bg-[#F7F9FC] p-1.5 rounded-lg border border-[#E2E8F0]"><span
+                                            class="block text-[10px] font-bold text-brand-muted tracking-wider uppercase leading-tight">Origen</span><span
+                                            class="text-[11px] font-semibold text-brand-blue truncate block">Todos ·
+                                            Auto · Manual</span></div>
+                                    <div class="bg-[#F7F9FC] p-1.5 rounded-lg border border-[#E2E8F0]"><span
+                                            class="block text-[10px] font-bold text-brand-muted tracking-wider uppercase leading-tight">Moneda</span><span
+                                            class="text-[11px] font-semibold text-brand-navy truncate block">ARS /
+                                            USD</span></div>
+                                    <div class="bg-[#F7F9FC] p-1.5 rounded-lg border border-[#E2E8F0]"><span
+                                            class="block text-[10px] font-bold text-brand-muted tracking-wider uppercase leading-tight">Estado</span><span
+                                            class="text-[11px] font-medium text-brand-navy truncate block">Activas
+                                            ▾</span></div>
+                                    <div class="bg-[#F7F9FC] p-1.5 rounded-lg border border-[#E2E8F0]"><span
+                                            class="block text-[10px] font-bold text-brand-muted tracking-wider uppercase leading-tight">Monto</span><span
+                                            class="text-[11px] font-medium text-brand-navy truncate block">&gt; 0 / Con
+                                            saldo ▾</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-2.5 pt-2 border-t border-[#E2E8F0] flex items-center justify-between text-[11px]">
+                            <div class="flex items-center gap-1.5 text-brand-muted"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span><span class="">Filtro
+                                    reactivo: actualiza la tabla en tiempo real.</span></div><span
+                                class="font-mono text-slate-400 text-[10px]">Paginado</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm">
+                                    ⚡</div>
+                                <h3 class="font-display font-bold text-base text-brand-navy">Acciones principales</h3>
+                            </div><span
+                                class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">3
+                                operaciones</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 p-2.5 rounded-xl border border-transparent">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-brand-navy">Marcar favorita</h4>
+                                    <p class="text-xs text-brand-muted leading-tight">La estrella deja la cuenta como
+                                        favorita y posiciona la cuenta arriba de todo.<br>&nbsp;Es personal: no afecta a
+                                        otros usuarios.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-2.5 rounded-xl border border-transparent">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-brand-navy">Ordenar</h4>
+                                    <p class="text-xs text-brand-muted leading-tight">Clic en el encabezado de las
+                                        columnas ordenables.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-2.5 rounded-xl border border-transparent">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-brand-navy">Exportar (menú Exportar)</h4>
+                                    <p class="text-xs text-brand-muted leading-tight">Baja los saldos con los filtros
+                                        aplicados. Si el volumen es grande, el archivo se genera en la cola de
+                                        descargas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm">
+                                📋</div>
+                            <h3 class="font-display font-bold text-base text-brand-navy">Columnas de la tabla</h3>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <div
+                            class="px-2.5 py-1.5 rounded-lg border text-xs bg-[#F7F9FC] border-[#E2E8F0] font-medium text-brand-navy">
+                            Favorita ★</div>
+                        <div
+                            class="px-2.5 py-1.5 rounded-lg border text-xs bg-[#F7F9FC] border-[#E2E8F0] font-medium text-brand-navy">
+                            Empresa</div>
+                        <div
+                            class="px-2.5 py-1.5 rounded-lg border text-xs bg-[#F7F9FC] border-[#E2E8F0] font-medium text-brand-navy">
+                            Banco</div>
+                        <div
+                            class="px-2.5 py-1.5 rounded-lg border text-xs bg-[#F7F9FC] border-[#E2E8F0] font-medium text-brand-navy">
+                            Cuenta</div>
+                        <div
+                            class="px-2.5 py-1.5 rounded-lg border text-xs bg-[#F7F9FC] border-[#E2E8F0] font-medium text-brand-navy">
+                            Moneda</div>
+                        <div
+                            class="px-2.5 py-1.5 rounded-lg border text-xs bg-[#F7F9FC] border-[#E2E8F0] font-medium text-brand-navy">
+                            Saldo</div>
+                        <div
+                            class="px-2.5 py-1.5 rounded-lg border text-xs bg-[#F7F9FC] border-[#E2E8F0] font-medium text-brand-navy">
+                            Origen</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-[#F7F9FC] border border-[#E2E8F0] flex items-start gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                                A</div>
+                            <div>
+                                <h4 class="text-xs font-bold text-brand-navy mb-1">Origen Automática</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">El saldo se actualiza solo desde el
+                                    datawarehouse.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-[#F7F9FC] border border-[#E2E8F0] flex items-start gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                                M</div>
+                            <div>
+                                <h4 class="text-xs font-bold text-brand-navy mb-1">Origen Manual</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">El saldo depende de una carga hecha
+                                    en la sección Carga manual.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="flex items-center justify-between border-t border-[#E2E8F0] pt-4 text-xs text-brand-muted">
+            <div class="flex items-center space-x-2"><span class="font-medium text-brand-navy">Trasa
+                    Intranet</span><span class="">·</span><span class="">Tool Bancos</span><span class="">·</span><span
+                    class="text-slate-400">Confidencial - Uso Interno</span></div>
+            <div class="flex items-center space-x-4"><span class="font-mono text-[11px] text-slate-400">1920 × 1080
+                    (16:9)</span><span
+                    class="font-bold tracking-widest text-brand-navy uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">HOJA
+                    04 / 05</span></div>
+        </footer>
+    </div>
+
+</body>
+
+</html>

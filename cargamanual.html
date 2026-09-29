@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full" style="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>Presentación Tool Bancos - Slide 5 (Guía: Carga manual 1920x1080)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Geist', 'system-ui', 'sans-serif'],
+                        display: ['Outfit', 'system-ui', 'sans-serif'],
+                        mono: ['Geist Mono', 'ui-monospace', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#01184C',
+                            navyAccent: '#0D2A72',
+                            blue: '#1777FF',
+                            blueLight: '#C2E4F4',
+                            bg: '#F7F9FC',
+                            border: '#E2E8F0',
+                            muted: '#718096'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background-color: #F7F9FC;
+            color: #01184C;
+            font-family: 'Geist', system-ui, sans-serif;
+        }
+
+        .slide-container {
+            width: 1920px;
+            height: 1080px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px 72px 36px 72px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(1, 24, 76, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(1, 24, 76, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+
+<body class="grid-bg select-none">
+    <div class="slide-container">
+
+        <!-- Top Header -->
+        <header class="flex items-center justify-between border-b border-[#E2E8F0] pb-6">
+            <div class="flex items-center space-x-6">
+                <!-- Trasa Logo with B Corp badge -->
+                <div class="bg-white px-4 py-2 rounded-xl border border-[#E2E8F0] shadow-sm flex items-center">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyCgT6891NKyNM5bavZXpFMlfMv4kewzZCb9uEPqIZwi6f8vsb0_FNSExgO4cXyRoMVu2K190iRn_bXH3tmdzJu6GDxZQ7nccUp6yC9fg0Us_Y8mjtY60AyO6hwbGtnYWMj6uFp-npS50YoyoXPWjO3WSKSPNLBYYWHEWeBNrB8xitChCKQAZkG0_8rtr14jb57Pml-8JcyjVL3y6mljmJJGNXFfCy-7uG7pff0j5O1HXU9xcWPOy-FqluLr9Ejo9TE4M"
+                        alt="Trasa - Empresa B Certificada" class="h-8 w-auto object-contain filter invert">
+                </div>
+                <div class="h-8 w-[1px] bg-[#E2E8F0]"></div>
+                <div>
+                    <p class="text-xs font-semibold tracking-wider text-brand-muted uppercase font-sans">Trasa Intranet
+                        · Herramientas Corporativas</p>
+                    <h2 class="text-base font-bold text-brand-navy font-display tracking-tight">Presentación de la tool:
+                        Bancos</h2>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-xs font-semibold text-brand-muted uppercase tracking-wider">Documentación
+                    Funcional</span>
+                <div
+                    class="px-3.5 py-1.5 rounded-full bg-[#1777FF]/10 text-brand-blue font-semibold text-xs tracking-wide border border-[#1777FF]/20 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                        </path>
+                    </svg>
+                    Guía: Carga manual
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="grid grid-cols-12 gap-8 my-auto pt-4">
+
+            <!-- Columna Izquierda: Introducción & Para qué sirve (4 Cols) -->
+            <div class="col-span-4 flex flex-col justify-between space-y-6">
+
+                <!-- Bloque Principal de Título & Acceso -->
+                <div class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm relative overflow-hidden">
+                    <div
+                        class="absolute -top-10 -right-10 w-32 h-32 bg-[#1777FF]/5 rounded-full blur-2xl pointer-events-none">
+                    </div>
+
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01184C]/5 text-[#01184C] font-semibold text-xs uppercase tracking-wider mb-4 border border-[#01184C]/10">
+                        <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+                        Sección Operativa (Sidebar: Gestión)
+                    </div>
+
+                    <h1 class="text-3xl font-extrabold text-brand-navy font-display tracking-tight mb-2">
+                        Bancos — Guía: Carga manual
+                    </h1>
+
+                    <!-- Metadatos de Ruta y Acceso -->
+                    <div class="mt-4 p-3.5 bg-[#F7F9FC] rounded-xl border border-[#E2E8F0] space-y-2 text-xs">
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-muted font-medium">Ruta del sistema:</span>
+                            <code
+                                class="font-mono bg-white px-2 py-0.5 rounded text-brand-blue font-semibold border border-[#E2E8F0]">/tools/bancos/carga-manual</code>
+                        </div>
+                        <div class="flex items-center justify-between pt-1 border-t border-[#E2E8F0]/60">
+                            <span class="text-brand-muted font-medium">Nivel de Acceso:</span>
+                            <span class="font-semibold text-brand-navy flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Permiso <code
+                                    class="font-mono bg-emerald-50 text-emerald-700 px-1 rounded">carga-manual-saldos</code>
+                                y Admins
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Para qué sirve -->
+                <div
+                    class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm flex-1 flex flex-col justify-center">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div
+                            class="w-9 h-9 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center font-bold">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-brand-navy">¿Para qué sirve?</h3>
+                    </div>
+
+                    <div class="border-l-4 border-brand-blue pl-4 py-1 mb-4 bg-blue-50/40 rounded-r-xl">
+                        <p class="text-[15px] font-medium text-brand-navy leading-relaxed">
+                            Registrar saldos de cuentas que <strong class="font-extrabold text-brand-blue">NO</strong>
+                            estan automatizadas&nbsp;</p>
+                    </div>
+
+                    <p class="text-sm text-brand-muted leading-relaxed">
+                        Cada carga es un registro nuevo . Si cargás otro saldo para la misma cuenta y la misma fecha,
+                        <strong class="text-brand-navy font-semibold">la nueva carga pasa a ser la vigente</strong> en
+                        el sistema.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Modalidades, Reglas y Correcciones (8 Cols) -->
+            <div class="col-span-8 flex flex-col space-y-6">
+                <!-- Top Row: Modalidades de carga y Reglas de los datos -->
+                <div class="grid grid-cols-2 gap-6">
+                    <!-- Card: Modalidades (Pestaña Cuentas) -->
+                    <div
+                        class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="font-display font-bold text-base text-brand-navy">Modalidades&nbsp; de
+                                        carga</h3>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <!-- Unitaria -->
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-brand-navy">Carga unitaria</h4>
+                                        <p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">
+                                            Botón de carga en la fila de la cuenta. Requiere: <strong>fecha del
+                                                saldo</strong>, <strong>saldo</strong> y <strong>observaciones</strong>
+                                            (opcional, máx. 255 char).
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Masiva Excel -->
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-brand-navy">Carga masiva por Excel</h4>
+                                        <ul
+                                            class="text-[11px] text-brand-muted leading-relaxed mt-1 list-disc pl-3 space-y-0.5">
+                                            <li class=""><strong>Descargar plantilla:</strong> Trae cuentas cargables.
+                                            </li>
+                                            <li class="">Completar fecha y saldo.</li>
+                                            <li class="">Importar Excel (XLSX, XLS, CSV).</li>
+                                            <li class=""><strong class="text-red-600">Todo o nada:</strong> Si una fila
+                                                tiene error, es detectado como una carga con fecha futura y no nes
+                                                cargada.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: Reglas de Datos -->
+                    <div
+                        class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="font-display font-bold text-base text-brand-navy">Reglas de los Datos
+                                    </h3>
+                                </div>
+                                <span
+                                    class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-red-50 text-red-700">Validación
+                                    Estricta</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="bg-[#F7F9FC] p-3 rounded-xl border border-[#E2E8F0]">
+                                    <h4 class="text-xs font-bold text-brand-navy mb-1">Formato Argentino Estricto</h4>
+                                    <p class="text-[11px] text-brand-muted leading-relaxed">
+                                        Punto para miles, coma para decimales.
+                                        <span
+                                            class="text-emerald-600 font-bold bg-emerald-50 px-1 rounded inline-block mt-1">1.234,56</span>
+                                        o
+                                        <span
+                                            class="text-emerald-600 font-bold bg-emerald-50 px-1 rounded inline-block mt-1">1234,56</span>
+                                        son válidos.
+                                    </p>
+                                    <p class="text-[11px] text-red-500 font-medium leading-relaxed mt-1">
+                                        Formatos como <code class="bg-red-50 px-1 rounded">1234.56</code> o <code
+                                            class="bg-red-50 px-1 rounded">1.5</code> se rechazan. Negativo =
+                                        descubierto.
+                                    </p>
+                                </div>
+
+                                <ul class="text-[11px] text-brand-muted leading-relaxed list-disc pl-4 space-y-1 mt-2">
+                                    <li class=""><strong class="text-brand-navy">Fechas:</strong> <code
+                                            class="font-mono">DD/MM/AAAA</code> o <code
+                                            class="font-mono">AAAA-MM-DD</code>. No puede ser futura.</li>
+                                    <li class="">Incompletas (fecha sin saldo o viceversa) generan error. Filas vacías
+                                        se ignoran.</li>
+                                    <li class="">Filas repetidas dentro del Excel (misma cuenta y fecha) se rechazan.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bottom Row: Historial, Corrección y Aviso DW -->
+                <div class="grid grid-cols-2 gap-6">
+
+                    <!-- Historial y Correcciones -->
+                    <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div
+                                class="w-7 h-7 rounded-lg bg-blue-50 text-brand-blue flex items-center justify-center font-bold">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-display font-bold text-[15px] text-brand-navy">Registro y Corrección</h3>
+                        </div>
+
+                        <p class="text-xs text-brand-muted leading-relaxed mb-3">
+                            La pestaña <strong>Registro de cargas</strong> muestra el historial de quién cargó qué y
+                            cuándo. Las cargas eliminadas siguen apareciendo con el estado <span
+                                class="text-red-500 italic">Eliminada</span>.
+                        </p>
+                        <div class="border-l-2 border-brand-blue pl-3 py-0.5">
+                            <h4 class="text-[11px] font-bold text-brand-navy">Para corregir un error:</h4>
+                            <p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">
+                                No se edita. Se carga de nuevo el valor correcto para la misma cuenta y fecha. Esta
+                                quedara como "VIGENTE" y la caraga anterior como "REEMPLAZADA".<br>&nbsp;Solo un usuario
+                                con permiso de&nbsp;<strong>admin de bancos</strong> puede eliminar la carga .
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Aviso DW Desactualizado -->
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Footer Strip -->
+        <footer
+            class="flex items-center justify-between border-t border-[#E2E8F0] pt-4 text-xs text-brand-muted font-sans">
+            <div class="flex items-center space-x-2">
+                <span class="font-medium text-brand-navy">Trasa Intranet</span>
+                <span class="">·</span>
+                <span class="">Tool Bancos</span>
+                <span class="">·</span>
+                <span class="text-slate-400">Confidencial - Uso Interno</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="font-mono text-[11px] text-slate-400">1920 × 1080 (16:9)</span>
+                <span
+                    class="font-bold tracking-widest text-brand-navy uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">HOJA
+                    06 / 06</span>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>Presentación Tool Bancos - Slide 5 (Guía: Maestro de Cuentas / Carga Manual 1920x1080)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Geist', 'system-ui', 'sans-serif'],
+                        display: ['Outfit', 'system-ui', 'sans-serif'],
+                        mono: ['Geist Mono', 'ui-monospace', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#01184C',
+                            navyAccent: '#0D2A72',
+                            blue: '#1777FF',
+                            blueLight: '#C2E4F4',
+                            bg: '#F7F9FC',
+                            border: '#E2E8F0',
+                            muted: '#718096'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background-color: #F7F9FC;
+            color: #01184C;
+            font-family: 'Geist', system-ui, sans-serif;
+        }
+
+        .slide-container {
+            width: 1920px;
+            height: 1080px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px 72px 36px 72px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(1, 24, 76, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(1, 24, 76, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+
+<body class="grid-bg select-none">
+    <div class="slide-container">
+
+        <!-- Top Header -->
+        <header class="flex items-center justify-between border-b border-[#E2E8F0] pb-6">
+            <div class="flex items-center space-x-6">
+                <!-- Trasa Logo with B Corp badge -->
+                <div class="bg-white px-4 py-2 rounded-xl border border-[#E2E8F0] shadow-sm flex items-center">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCJ4RLW9ESow-Mf-aXPpyqz4EjkB2yCJb6JUsLC7M2X5O7LhZ6HsagErhZmFE7TJE_3e7GI_wrML3i7PpZIlSTWYJ3ZGX1dHqJjbo53LJxfZA8C13vJF-nM4ml4mkwlrtyStv5vSxhGcAfkRfpVMo1HuUNnKTeGpi5PZ2U_G5iK6d8lxc88z7AAyvQG8Z3vqdrzttuAaItu2Wc1V6nNm1UBuS-ir-Xn88Yvkd8-FUYNNDwLPLCKvhN981Hwsy_b6fttUw"
+                        alt="Trasa - Empresa B Certificada" class="h-8 w-auto object-contain filter invert">
+                </div>
+                <div class="h-8 w-[1px] bg-[#E2E8F0]"></div>
+                <div>
+                    <p class="text-xs font-semibold tracking-wider text-brand-muted uppercase font-sans">Trasa Intranet
+                        · Herramientas Corporativas</p>
+                    <h2 class="text-base font-bold text-brand-navy font-display tracking-tight">Presentación de la tool:
+                        Bancos</h2>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-xs font-semibold text-brand-muted uppercase tracking-wider">Documentación
+                    Funcional</span>
+                <div
+                    class="px-3.5 py-1.5 rounded-full bg-[#1777FF]/10 text-brand-blue font-semibold text-xs tracking-wide border border-[#1777FF]/20 flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                        </path>
+                    </svg>
+                    Guía: Maestro de Cuentas
+                </div>
+            </div>
+        </header>
+        <!-- Main Content Area -->
+        <main class="grid grid-cols-12 gap-8 my-auto pt-4">
+
+            <!-- Columna Izquierda: Introducción & Para qué sirve (4 Cols) -->
+            <div class="col-span-4 flex flex-col justify-between space-y-6">
+
+                <!-- Bloque Principal de Título & Acceso -->
+                <div class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm relative overflow-hidden">
+                    <div
+                        class="absolute -top-10 -right-10 w-32 h-32 bg-[#1777FF]/5 rounded-full blur-2xl pointer-events-none">
+                    </div>
+
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01184C]/5 text-[#01184C] font-semibold text-xs uppercase tracking-wider mb-4 border border-[#01184C]/10">
+                        <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+                        Sección Operativa
+                    </div>
+
+                    <h1 class="text-3xl font-extrabold text-brand-navy font-display tracking-tight mb-2">
+                        Bancos — Guía: Maestro de Cuentas
+                    </h1>
+
+                    <!-- Metadatos de Ruta y Acceso -->
+                    <div class="mt-4 p-3.5 bg-[#F7F9FC] rounded-xl border border-[#E2E8F0] space-y-2 text-xs">
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-muted font-medium">Ruta del sistema:</span>
+                            <code
+                                class="font-mono bg-white px-2 py-0.5 rounded text-brand-blue font-semibold border border-[#E2E8F0]">/tools/bancos/maestro</code>
+                        </div>
+                        <div class="flex items-center justify-between pt-1 border-t border-[#E2E8F0]/60">
+                            <span class="text-brand-muted font-medium">Nivel de Acceso:</span>
+                            <span class="font-semibold text-brand-navy flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Solo lectura (Edición en Configuración)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Para qué sirve -->
+                <div
+                    class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm flex-1 flex flex-col justify-center">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div
+                            class="w-9 h-9 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center font-bold">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-brand-navy">¿Para qué sirve?</h3>
+                    </div>
+
+                    <div class="border-l-4 border-brand-blue pl-4 py-1 mb-4 bg-blue-50/40 rounded-r-xl">
+                        <p class="text-[15px] font-medium text-brand-navy leading-relaxed">
+                            Ver todas las cuentas bancarias que gestiona la tool, con su último saldo y su estado.
+                        </p>
+                    </div>
+
+                    <p class="text-sm text-brand-muted leading-relaxed">
+                        Centraliza la información de las cuentas, permitiendo consultar la metadata corporativa
+                        completa, origen del dato y parámetros de uso en la intranet.
+                    </p>
+                </div>
+            </div>
+            <!-- Columna Derecha: Filtros, Columnas, Acciones & Distinción de Estados (8 Cols) -->
+            <div class="col-span-8 flex flex-col space-y-6">
+                <!-- Top Row: Filtros Disponibles & Acciones Clave en 2 cards -->
+                <div class="grid grid-cols-2 gap-6">
+                    <!-- Card: Filtros y Columnas -->
+                    <div
+                        class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="font-display font-bold text-base text-brand-navy">Filtros y Búsqueda</h3>
+                                </div>
+                                <span
+                                    class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">7
+                                    Dimensiones</span>
+                            </div>
+
+                            <!-- Tags de Filtros -->
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <div
+                                    class="flex items-center gap-1 px-2.5 py-1 bg-[#F7F9FC] rounded-lg border border-[#E2E8F0] text-[11px] font-medium text-brand-navy">
+                                    <svg class="w-3 h-3 text-brand-blue" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                    Búsqueda libre
+                                </div>
+                                <div
+                                    class="px-2 py-1 bg-blue-50 text-brand-blue rounded-lg border border-blue-100 text-[11px] font-semibold">
+                                    Banco</div>
+                                <div
+                                    class="px-2 py-1 bg-blue-50 text-brand-blue rounded-lg border border-blue-100 text-[11px] font-semibold">
+                                    Empresa</div>
+                                <div
+                                    class="px-2 py-1 bg-blue-50 text-brand-blue rounded-lg border border-blue-100 text-[11px] font-semibold">
+                                    Cuenta</div>
+                                <div
+                                    class="px-2 py-1 bg-blue-50 text-brand-blue rounded-lg border border-blue-100 text-[11px] font-semibold">
+                                    Estado</div>
+                                <div
+                                    class="px-2 py-1 bg-blue-50 text-brand-blue rounded-lg border border-blue-100 text-[11px] font-semibold">
+                                    Moneda</div>
+                                <div
+                                    class="px-2 py-1 bg-blue-50 text-brand-blue rounded-lg border border-blue-100 text-[11px] font-semibold">
+                                    Tipo cuenta</div>
+                                <div
+                                    class="px-2 py-1 bg-blue-50 text-brand-blue rounded-lg border border-blue-100 text-[11px] font-semibold">
+                                    Habilitada Intra</div>
+                            </div>
+                            <!-- Columnas Principales -->
+                            <h4 class="text-xs font-bold text-brand-navy mb-1.5">Columnas de la tabla:</h4>
+                            <p
+                                class="text-[11px] text-brand-muted leading-relaxed font-mono bg-[#F7F9FC] p-2 rounded-lg border border-[#E2E8F0]">
+                                Empresa · Banco · Cuenta · Tipo de cuenta · Moneda · Último saldo · Actualizado · Estado
+                                · Origen del dato (Automática/Manual) · Habilitada Intra
+                            </p>
+                        </div>
+                        <div
+                            class="mt-3 pt-2 border-t border-[#E2E8F0] text-[11px] text-brand-muted flex items-center justify-between">
+                            <span class="font-mono text-emerald-600 font-semibold">ARS / USD</span>
+                            <span class="text-slate-400">Estructura unificada</span>
+                        </div>
+                    </div>
+                    <!-- Card: Acciones Principales -->
+                    <div
+                        class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="font-display font-bold text-base text-brand-navy">Acciones Principales
+                                    </h3>
+                                </div>
+                                <span
+                                    class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">2
+                                    Operaciones</span>
+                            </div>
+                            <div class="space-y-3">
+                                <!-- Acción 1: Detalle -->
+                                <div
+                                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-[#E2E8F0]">
+                                    <div
+                                        class="w-7 h-7 rounded-md bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4 6h16M4 10h16M4 14h8m-8 4h8"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-brand-navy">Ver Detalle</h4>
+                                        <p class="text-xs text-brand-muted leading-tight">Al hacer clic en cualquier
+                                            fila de la tabla, se despliega un panel lateral con los datos extendidos de
+                                            la cuenta.</p>
+                                    </div>
+                                </div>
+                                <!-- Acción 2: Exportar -->
+                                <div
+                                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-[#E2E8F0]">
+                                    <div
+                                        class="w-7 h-7 rounded-md bg-blue-50 text-brand-blue flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-brand-navy">Exportar <span
+                                                class="font-normal text-brand-muted text-[11px]">(menú Exportar)</span>
+                                        </h4>
+                                        <p class="text-xs text-brand-muted leading-tight">Descarga la lista de cuentas
+                                            respetando los filtros y búsquedas aplicadas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-2 pt-2 border-t border-[#E2E8F0] text-[11px] text-brand-muted flex items-center justify-between">
+                            <span class="">Descargas en formato XLS / CSV</span>
+                            <span class="text-brand-blue font-medium">Panel Lateral Interactivo</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bottom Row: Estado vs Habilitada Intra -->
+                <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-base text-brand-navy">Diferencia Clave: Estado vs.
+                            Habilitada Intra</h3>
+                        <span
+                            class="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full ml-auto">Regla
+                            de Negocio</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+
+                        <!-- Indicador 1: Estado DW -->
+                        <div class="p-4 rounded-xl bg-[#F7F9FC] border border-[#E2E8F0] flex items-start gap-3">
+                            <div
+                                class="w-7 h-7 rounded-lg bg-blue-100 text-brand-blue flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                                DW
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-brand-navy mb-1">Estado (Origen Data Warehouse)</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">
+                                    Proviene directamente del origen del dato (<strong
+                                        class="text-brand-navy font-semibold">DW</strong>). Refleja la condición técnica
+                                    y operativa de la cuenta bancaria registrada en la base central.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Indicador 2: Habilitada Intra -->
+                        <div class="p-4 rounded-xl bg-[#F7F9FC] border border-[#E2E8F0] flex items-start gap-3">
+                            <div
+                                class="w-7 h-7 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                                INT
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-brand-navy mb-1">Habilitada Intra (Uso en la Intranet)
+                                </h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">
+                                    Indica si la cuenta está habilitada para operar dentro de la intranet. <strong
+                                        class="text-brand-navy font-semibold">Una cuenta deshabilitada no permite
+                                        realizar cargas manuales.</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Bottom Footer Strip -->
+        <footer
+            class="flex items-center justify-between border-t border-[#E2E8F0] pt-4 text-xs text-brand-muted font-sans">
+            <div class="flex items-center space-x-2">
+                <span class="font-medium text-brand-navy">Trasa Intranet</span>
+                <span class="">·</span>
+                <span class="">Tool Bancos</span>
+                <span class="">·</span>
+                <span class="text-slate-400">Confidencial - Uso Interno</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="font-mono text-[11px] text-slate-400">1920 × 1080 (16:9)</span>
+                <span
+                    class="font-bold tracking-widest text-brand-navy uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">HOJA
+                    05 / 05</span>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

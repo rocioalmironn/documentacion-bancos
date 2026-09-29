@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing - Intranet Bancos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#01184C',
+              'navy-dark': '#000F33',
+              'navy-light': '#0D2A72',
+              blue: '#1777FF',
+              'blue-light': '#E4EFF8',
+              'blue-soft': '#C2E4F4',
+              surface: '#F7F9FC',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            geist: ['Geist', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Geist', sans-serif;
+      background-color: #01184C;
+      color: #FFFFFF;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden flex flex-col min-h-screen">
+  
+  <!-- Subtle architectural background accents -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+    <div class="absolute -right-40 -top-40 w-[900px] h-[900px] rounded-full bg-radial from-[#1777FF]/20 to-transparent blur-3xl"></div>
+    <div class="absolute -left-40 top-1/2 w-[800px] h-[800px] rounded-full bg-radial from-[#0D2A72]/40 to-transparent blur-3xl"></div>
+    <!-- Clean geometry grid lines -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+  </div>
+
+  <!-- Top Header / Brand Bar -->
+  <header class="w-full border-b border-white/10 bg-[#01184C]/50 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4 md:gap-6">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmGvoFBgdtYj1srnBwemHuXbK-KcizJ1PTJ9e0A0hO2A92_yPDEefzuRDJfpqjYOVZ3V1gtoJUCen8ga6Gd2DYz8lMp6LoZBZsGaJEPmb1JGDaFjE1xHvl92v7wdUb8qvqGAnTteJ4y4b26K_F6-USFoikDnsmeGuq5SdoNcmLzxNwRbB3aJmX_drPm84nPQltm2CUHXMuk_IcYaPO3b2xqmOTJwWYdfVmq7AoSiFS2xxO4O3vLiuVNLuq8CObGpKsmfc" alt="Trasa" class="h-8 md:h-10 object-contain brightness-100">
+        <div class="h-6 w-px bg-white/20"></div>
+        <span class="text-white/70 font-outfit text-base md:text-lg font-medium tracking-wide uppercase">Intranet</span>
+      </div>
+      <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/15">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#16A34A] animate-pulse"></span>
+        <span class="text-xs md:text-sm text-white/80">Sistema en línea</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-20 flex-1 flex flex-col justify-center">
+    
+    <!-- Hero Section (Merged from main.html) -->
+    <div class="mb-16 md:mb-24 flex flex-col items-center md:items-start text-center md:text-left">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold font-outfit tracking-tight text-white leading-[1.1] mb-6">
+        Presentación de la tool: <br class="hidden md:block"/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#1777FF] via-[#70A8FF] to-[#C2E4F4]">Bancos</span>
+      </h1>
+  
+      <p class="text-xl md:text-2xl text-white/80 font-light leading-relaxed max-w-3xl mb-12">
+        Control unificado, visibilidad de saldos en tiempo real. Accede a todas las vistas, paneles y configuraciones del sistema.
+      </p>
+  
+      <!-- 4 Key pillars quick badges -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-white/15 w-full">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[#1777FF] shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] md:text-xs uppercase text-white/50 font-semibold font-outfit">Saldos</div>
+            <div class="text-xs md:text-sm font-medium text-white">Tiempo Real</div>
+          </div>
+        </div>
+  
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[#1777FF] shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] md:text-xs uppercase text-white/50 font-semibold font-outfit">Historial</div>
+            <div class="text-xs md:text-sm font-medium text-white">Evolución Diaria</div>
+          </div>
+        </div>
+  
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[#1777FF] shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] md:text-xs uppercase text-white/50 font-semibold font-outfit">Maestro</div>
+            <div class="text-xs md:text-sm font-medium text-white">Todas las Cuentas</div>
+          </div>
+        </div>
+  
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[#1777FF] shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+          </div>
+          <div class="text-left">
+            <div class="text-[10px] md:text-xs uppercase text-white/50 font-semibold font-outfit">Operativa</div>
+            <div class="text-xs md:text-sm font-medium text-white">Cargar Saldos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+      
+      <a href="dashboard.html" class="glass-card rounded-2xl p-5 group flex flex-col h-full cursor-pointer no-underline">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#1777FF] mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 font-outfit group-hover:text-[#70A8FF] transition-colors">Dashboard</h3>
+        <p class="text-white/60 text-xs md:text-sm flex-grow">Tablero principal con métricas clave y resúmenes.</p>
+        <div class="mt-4 flex items-center text-[#1777FF] text-xs md:text-sm font-medium">
+          Ver vista <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <a href="saldos.html" class="glass-card rounded-2xl p-5 group flex flex-col h-full cursor-pointer no-underline">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#1777FF] mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 font-outfit group-hover:text-[#70A8FF] transition-colors">Saldos</h3>
+        <p class="text-white/60 text-xs md:text-sm flex-grow">Visibilidad de saldos en tiempo real.</p>
+        <div class="mt-4 flex items-center text-[#1777FF] text-xs md:text-sm font-medium">
+          Ver vista <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <a href="historico.html" class="glass-card rounded-2xl p-5 group flex flex-col h-full cursor-pointer no-underline">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#1777FF] mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 font-outfit group-hover:text-[#70A8FF] transition-colors">Histórico</h3>
+        <p class="text-white/60 text-xs md:text-sm flex-grow">Evolución diaria y registro histórico de movimientos.</p>
+        <div class="mt-4 flex items-center text-[#1777FF] text-xs md:text-sm font-medium">
+          Ver vista <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <a href="maestrodecuentas.html" class="glass-card rounded-2xl p-5 group flex flex-col h-full cursor-pointer no-underline">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#1777FF] mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 font-outfit group-hover:text-[#70A8FF] transition-colors">Maestro de Cuentas</h3>
+        <p class="text-white/60 text-xs md:text-sm flex-grow">Gestión de todas las cuentas registradas en el sistema.</p>
+        <div class="mt-4 flex items-center text-[#1777FF] text-xs md:text-sm font-medium">
+          Ver vista <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <a href="cargamanual.html" class="glass-card rounded-2xl p-5 group flex flex-col h-full cursor-pointer no-underline">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#1777FF] mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 font-outfit group-hover:text-[#70A8FF] transition-colors">Carga Manual</h3>
+        <p class="text-white/60 text-xs md:text-sm flex-grow">Operativa para cargar saldos y movimientos manualmente.</p>
+        <div class="mt-4 flex items-center text-[#1777FF] text-xs md:text-sm font-medium">
+          Ver vista <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <a href="configuracion.html" class="glass-card rounded-2xl p-5 group flex flex-col h-full cursor-pointer no-underline">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#1777FF] mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 font-outfit group-hover:text-[#70A8FF] transition-colors">Configuración</h3>
+        <p class="text-white/60 text-xs md:text-sm flex-grow">Ajustes generales, usuarios y permisos del sistema.</p>
+        <div class="mt-4 flex items-center text-[#1777FF] text-xs md:text-sm font-medium">
+          Ver vista <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <a href="guiadeuso.html" class="glass-card rounded-2xl p-5 group flex flex-col h-full cursor-pointer no-underline">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#1777FF] mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-white mb-2 font-outfit group-hover:text-[#70A8FF] transition-colors">Guía de Uso</h3>
+        <p class="text-white/60 text-xs md:text-sm flex-grow">Documentación y manual de usuario para la intranet.</p>
+        <div class="mt-4 flex items-center text-[#1777FF] text-xs md:text-sm font-medium">
+          Ver vista <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+      
+    </div>
+  </main>
+  
+  <footer class="border-t border-white/10 py-6 mt-8 w-full text-center text-white/40 text-xs md:text-sm">
+    <p>Trasa Intranet · Sistema de Control de Bancos</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+  <title>Presentación Tool Bancos - Slide 7 (Guía: Configuración 1920x1080)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#01184C',
+              'navy-dark': '#000F33',
+              'navy-light': '#0D2A72',
+              blue: '#1777FF',
+              'blue-light': '#E4EFF8',
+              'blue-soft': '#C2E4F4',
+              surface: '#F7F9FC',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            geist: ['Geist', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      margin: 0;
+      background-color: #01184C;
+      font-family: 'Geist', sans-serif;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body class="w-[1920px] h-[1080px] relative flex flex-col justify-between p-24 select-none bg-[#01184C] overflow-hidden">
+  
+  <!-- Subtle architectural background accents -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute -right-40 -top-40 w-[900px] h-[900px] rounded-full bg-radial from-[#1777FF]/25 to-transparent blur-3xl"></div>
+    <div class="absolute left-1/3 -bottom-48 w-[800px] h-[800px] rounded-full bg-radial from-[#0D2A72]/50 to-transparent blur-2xl"></div>
+    <!-- Clean geometry grid lines -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px]"></div>
+  </div>
+  <!-- Top Header / Brand Bar -->
+  <div class="relative z-10 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsyxaE53UMznBpqarUoFNInqhQfFhcPJMHFQmafxuIZJ9GKsPp8AHjpqAoM2sbgaqZU_rcaGvPmHWF_hst6xOSOJVW_-CTIioGKty84-ewx2J0saMKzPsjvJ74PhQL2YZjvGm8QgQxm7T1W9x5EYNAbgXmdY0Ft1lVXr3sH0WpSNKC-9I8hwZTue2LnWSKPy_uoRHXYTwzscPxUvRWTjJ8kIZIruCV8eQooku5ALBEu3xJBRxnxPHF0GcjkP17z4WmvLM" alt="Trasa - Empresa B Certificada" class="h-14 object-contain brightness-100">
+      <div class="h-8 w-px bg-white/20"></div>
+      <span class="text-white/70 font-outfit text-xl font-medium tracking-wide uppercase">Intranet&nbsp;</span>
+    </div>
+    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/15">
+      <svg class="w-4 h-4 text-[#C2E4F4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+      <span class="text-sm font-medium text-white/90 tracking-wider uppercase font-outfit">Guía Funcional · Configuración</span>
+    </div>
+  </div>
+  <!-- Hero Content Center -->
+  <div class="relative z-10 w-full my-auto flex flex-col justify-center pt-4">
+    
+    <h1 class="text-6xl font-extrabold font-outfit tracking-tight text-white leading-[1.1] mb-6">
+      Bancos — Guía: <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#1777FF] via-[#70A8FF] to-[#C2E4F4]">Configuración</span>
+    </h1>
+    
+    <!-- Metadatos de Ruta y Acceso -->
+    <div class="flex items-center gap-4 mb-10">
+      <div class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl backdrop-blur-md">
+        <span class="text-white/50 text-sm font-medium">Ubicación:</span>
+        <span class="text-[#70A8FF] font-semibold text-sm font-mono">Link en el pie del sidebar</span>
+      </div>
+      <div class="flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-xl backdrop-blur-md">
+        <span class="text-purple-300/70 text-sm font-medium">Acceso restringido:</span>
+        <span class="font-bold text-purple-300 text-sm flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+          Solo Admins de Bancos (Empresa o Tool)
+        </span>
+      </div>
+    </div>
+    <!-- Main Grid Layout -->
+    <div class="grid grid-cols-12 gap-8">
+      
+      <!-- Columna Izquierda (4 Cols) -->
+      <div class="col-span-4 flex flex-col gap-6">
+        
+        <!-- Acceso Card -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-7 backdrop-blur-md relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="flex items-center gap-2 mb-2 text-purple-300 font-medium text-xs uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            Visibilidad en plataforma
+          </div>
+          <p class="text-white/80 text-base leading-relaxed font-light">
+            El link de configuración se encuentra en el <strong class="text-white font-medium">pie del sidebar</strong>. Si no lográs visualizarlo, significa que tu usuario no posee el nivel de acceso requerido para administrar la tool.
+          </p>
+        </div>
+        <!-- Maestro de Bancos -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-7 backdrop-blur-md">
+          <h3 class="font-outfit font-bold text-xl text-white mb-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-[#1777FF]/20 text-[#70A8FF] flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            </div>
+            Maestro de Bancos
+          </h3>
+          <p class="text-white/80 text-sm leading-relaxed font-light">
+            <strong class="text-white">Catálogo central de bancos:</strong> Permite realizar el alta y edición de las entidades bancarias que luego se utilizan para clasificar y vincular las cuentas.
+          </p>
+        </div>
+        <!-- Permisos -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-7 backdrop-blur-md flex-1">
+          <h3 class="font-outfit font-bold text-xl text-white mb-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            </div>
+            Permisos de Usuarios
+          </h3>
+          <p class="text-white/80 text-sm leading-relaxed font-light mb-4">
+            Lista todos los usuarios con acceso a bancos. Incluye un interruptor de <strong class="text-white">Carga manual de saldos</strong> por usuario.
+          </p>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-3 mb-4 flex items-center justify-between">
+            <span class="text-xs font-mono text-white/70">Carga manual de saldos</span>
+            <div class="w-9 h-5 bg-emerald-500 rounded-full relative shadow-inner">
+              <div class="w-4 h-4 bg-white rounded-full absolute right-0.5 top-0.5 shadow-sm"></div>
+            </div>
+          </div>
+          <div class="space-y-1.5 border-t border-white/10 pt-3">
+            <p class="text-xs text-white/50 leading-relaxed flex items-center gap-1.5">
+              <span class="text-emerald-400 font-bold">•</span> Los admins de bancos ya tienen la carga manual implícita.
+            </p>
+            <p class="text-xs text-white/50 leading-relaxed flex items-center gap-1.5">
+              <span class="text-purple-400 font-bold">•</span> Para dar/quitar acceso total ir a <strong class="text-white/80 font-medium">Empresa &gt; Equipo</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Columna Derecha (8 Cols) -->
+      <div class="col-span-8 flex flex-col gap-6">
+        
+        <!-- Pestaña Maestro de Cuentas (ABM) -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md h-full flex flex-col">
+          
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#1777FF]/20 text-[#C2E4F4] flex items-center justify-center border border-[#1777FF]/30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h8m-8 4h8"></path></svg>
+              </div>
+              <div>
+                <h2 class="font-outfit font-bold text-3xl text-white">Maestro de Cuentas</h2>
+                <p class="text-[#70A8FF] text-sm font-medium mt-1">ABM (Alta, Baja y Modificación) de cuentas bancarias</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/20 text-[#C2E4F4] text-xs font-mono font-medium">
+              Gestión Avanzada
+            </span>
+          </div>
+          <!-- Funciones ABM Grid -->
+          <div class="grid grid-cols-1 gap-4 mb-6">
+            
+            <!-- Alta -->
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex gap-5 items-start hover:bg-white/10 transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/30 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white font-outfit mb-1.5 flex items-center gap-2">
+                  Alta de cuenta
+                  <span class="text-[11px] font-mono font-normal px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">Botón superior</span>
+                </h4>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  Botón de alta arriba a la derecha. La nueva cuenta ingresada queda <strong class="text-white font-medium">pendiente de vínculo</strong> con el Data Warehouse (DW) hasta su sincronización.
+                </p>
+              </div>
+            </div>
+            <!-- Edición -->
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex gap-5 items-start hover:bg-white/10 transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white font-outfit mb-1.5 flex items-center gap-2">
+                  Edición
+                  <span class="text-[11px] font-mono font-normal px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">Datos duros</span>
+                </h4>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  Permite modificar los datos duros de la cuenta registrados en el sistema, tales como la <strong class="text-white font-medium">empresa, el banco, el tipo de cuenta y la moneda</strong>.
+                </p>
+              </div>
+            </div>
+            <!-- Habilitar / Deshabilitar -->
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex gap-5 items-start hover:bg-white/10 transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0 border border-rose-500/30 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-white font-outfit mb-1.5 flex items-center gap-2">
+                  Habilitar / Deshabilitar
+                  <span class="text-[11px] font-mono font-normal px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">Habilitada Intra</span>
+                </h4>
+                <p class="text-white/70 text-sm leading-relaxed">
+                  Controla directamente la columna <em>Habilitada Intra</em>. <strong class="text-rose-300 font-medium">Una cuenta deshabilitada deja de ser cargable manualmente</strong> por los usuarios operativos.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Bottom Note -->
+          <div class="mt-auto pt-5 border-t border-white/10 flex items-start gap-3">
+            <div class="text-[#70A8FF] shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <p class="text-xs text-white/60 leading-relaxed font-light">
+              La empresa se toma directamente del catálogo de razones sociales de la plataforma central. Las reglas del vínculo con el DW (que siempre operan mediante ID) se detallan en el documento <strong class="text-white/80 font-medium">Maestro de Bancos ABM</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Slide Footer -->
+  <div class="relative z-10 flex items-center justify-between border-t border-white/10 pt-6 text-sm text-white/50 font-light mt-auto">
+    <div class="">Trasa Intranet · Documentación Funcional de Producto</div>
+    <div class="flex items-center gap-3">
+      <span class="font-mono text-xs text-white/40">1920 × 1080 (16:9)</span>
+      <div class="font-mono text-xs tracking-widest text-white/60 bg-white/10 px-3 py-1 rounded-full border border-white/15">HOJA 07 / 07</div>
+    </div>
+  </div>
+</body></html>
