@@ -1,2140 +1,475 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool Bancos — Documentación Técnica</title>
-    <meta name="description"
-        content="Documentación técnica completa de la tool bancos de TRASA Intranet: arquitectura, permisos, carga manual, API reference y edge cases.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-    <style>
-        :root {
-            --bg: #0a0e1a;
-            --bg-surface: #111827;
-            --bg-elevated: #1a2234;
-            --bg-hover: #1e293b;
-            --border: #1e293b;
-            --border-accent: #334155;
-            --text: #e2e8f0;
-            --text-muted: #94a3b8;
-            --text-dim: #64748b;
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.15);
-            --green: #10b981;
-            --green-bg: rgba(16, 185, 129, 0.08);
-            --red: #ef4444;
-            --red-bg: rgba(239, 68, 68, 0.06);
-            --amber: #f59e0b;
-            --amber-bg: rgba(245, 158, 11, 0.08);
-            --purple: #a855f7;
-            --purple-bg: rgba(168, 85, 247, 0.08);
-            --teal: #14b8a6;
-            --teal-bg: rgba(20, 184, 166, 0.08);
-            --code-bg: #0d1117;
-            --radius: 12px;
-            --sidebar-w: 280px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ── Layout ─────────────────────────────────── */
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: var(--sidebar-w);
-            height: 100vh;
-            background: var(--bg-surface);
-            border-right: 1px solid var(--border);
-            overflow-y: auto;
-            z-index: 100;
-            padding: 24px 0;
-            scrollbar-width: thin;
-            scrollbar-color: var(--border-accent) transparent;
-        }
-
-        .sidebar-logo {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 16px;
-        }
-
-        .sidebar-logo h2 {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-
-        .sidebar-logo span {
-            font-size: 11px;
-            color: var(--text-dim);
-            display: block;
-            margin-top: 2px;
-        }
-
-        .sidebar nav {
-            padding: 0 12px;
-        }
-
-        .sidebar .nav-group {
-            margin-bottom: 16px;
-        }
-
-        .sidebar .nav-group-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            padding: 0 8px;
-            margin-bottom: 6px;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 6px 8px;
-            border-radius: 6px;
-            font-size: 13px;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.15s;
-        }
-
-        .sidebar a:hover {
-            color: var(--text);
-            background: var(--bg-hover);
-        }
-
-        .sidebar a.active {
-            color: var(--accent);
-            background: var(--accent-glow);
-        }
-
-        .main {
-            margin-left: var(--sidebar-w);
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .main-inner {
-            width: 100%;
-            max-width: 960px;
-            padding: 40px 48px 120px;
-        }
-
-        /* ── Header ────────────────────────────────── */
-        .page-header {
-            margin-bottom: 48px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .page-header h1 {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--accent), var(--teal));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        .page-header .subtitle {
-            font-size: 16px;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .badge-row {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-        }
-
-        .badge.blue {
-            background: var(--accent-glow);
-            color: var(--accent);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .badge.green {
-            background: var(--green-bg);
-            color: var(--green);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .badge.amber {
-            background: var(--amber-bg);
-            color: var(--amber);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-        }
-
-        .badge.purple {
-            background: var(--purple-bg);
-            color: var(--purple);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-        }
-
-        /* ── Sections ──────────────────────────────── */
-        section {
-            margin-bottom: 56px;
-        }
-
-        h2 {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        h2 .section-number {
-            color: var(--accent);
-            margin-right: 8px;
-        }
-
-        h3 {
-            font-size: 17px;
-            font-weight: 600;
-            margin: 28px 0 12px;
-            color: var(--text);
-        }
-
-        h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin: 20px 0 8px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        p {
-            margin-bottom: 12px;
-        }
-
-        /* ── Tables ─────────────────────────────────── */
-        .table-wrap {
-            overflow-x: auto;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            margin: 16px 0 24px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-        }
-
-        thead {
-            background: var(--bg-elevated);
-        }
-
-        th {
-            padding: 10px 14px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-dim);
-            border-bottom: 1px solid var(--border);
-            white-space: nowrap;
-        }
-
-        td {
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-muted);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.015);
-        }
-
-        td code,
-        th code {
-            background: var(--code-bg);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--accent);
-        }
-
-        /* ── Code blocks ───────────────────────────── */
-        pre {
-            background: var(--code-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            overflow-x: auto;
-            margin: 12px 0 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            line-height: 1.65;
-            tab-size: 2;
-        }
-
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-        }
-
-        :not(pre)>code {
-            background: var(--code-bg);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--accent);
-            font-size: 12.5px;
-        }
-
-        .code-label {
-            display: inline-block;
-            background: var(--bg-elevated);
-            color: var(--text-dim);
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 6px 6px 0 0;
-            border: 1px solid var(--border);
-            border-bottom: none;
-            margin-bottom: -1px;
-            position: relative;
-            z-index: 1;
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.02em;
-        }
-
-        /* ── File tree ──────────────────────────────── */
-        .file-tree {
-            background: var(--code-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            line-height: 1.8;
-            color: var(--text-muted);
-            margin: 12px 0 20px;
-        }
-
-        .file-tree .dir {
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        .file-tree .file {
-            color: var(--text-muted);
-        }
-
-        .file-tree .comment {
-            color: var(--text-dim);
-            font-size: 11px;
-        }
-
-        /* ── Mermaid ───────────────────────────────── */
-        .mermaid-wrap {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px 24px;
-            margin: 16px 0 24px;
-            overflow-x: auto;
-            text-align: center;
-        }
-
-        .mermaid-wrap .mermaid {
-            display: inline-block;
-        }
-
-        /* ── Cards ──────────────────────────────────── */
-        .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin: 12px 0;
-        }
-
-        .card-header {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card p {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .card.blue-accent {
-            border-left: 3px solid var(--accent);
-        }
-
-        .card.green-accent {
-            border-left: 3px solid var(--green);
-        }
-
-        .card.red-accent {
-            border-left: 3px solid var(--red);
-        }
-
-        .card.amber-accent {
-            border-left: 3px solid var(--amber);
-        }
-
-        /* ── Level indicator ───────────────────────── */
-        .level-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 12px;
-            margin: 16px 0 24px;
-        }
-
-        .level-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 16px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .level-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-        }
-
-        .level-card.l1::before {
-            background: var(--accent);
-        }
-
-        .level-card.l2::before {
-            background: var(--green);
-        }
-
-        .level-card.l3::before {
-            background: var(--red);
-        }
-
-        .level-card .level-tag {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 6px;
-        }
-
-        .level-card.l1 .level-tag {
-            color: var(--accent);
-        }
-
-        .level-card.l2 .level-tag {
-            color: var(--green);
-        }
-
-        .level-card.l3 .level-tag {
-            color: var(--red);
-        }
-
-        .level-card .level-name {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .level-card .level-desc {
-            font-size: 12px;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        /* ── Endpoint block ────────────────────────── */
-        .endpoint {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            margin: 16px 0;
-            overflow: hidden;
-        }
-
-        .endpoint-header {
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid var(--border);
-            background: var(--bg-elevated);
-        }
-
-        .method {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 4px;
-            letter-spacing: 0.04em;
-        }
-
-        .method.get {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--green);
-        }
-
-        .method.post {
-            background: rgba(59, 130, 246, 0.15);
-            color: var(--accent);
-        }
-
-        .method.put {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--amber);
-        }
-
-        .method.delete {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--red);
-        }
-
-        .endpoint-path {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        .endpoint-body {
-            padding: 16px;
-        }
-
-        /* ── Edge case list ────────────────────────── */
-        .edge-group {
-            margin: 20px 0;
-        }
-
-        .edge-group-title {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-dim);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .edge-group-title .count {
-            background: var(--accent-glow);
-            color: var(--accent);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 11px;
-        }
-
-        /* ── Steps ──────────────────────────────────── */
-        .steps {
-            counter-reset: step;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .steps li {
-            counter-increment: step;
-            padding: 8px 0 8px 40px;
-            position: relative;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .steps li::before {
-            content: counter(step);
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: var(--accent-glow);
-            color: var(--accent);
-            font-size: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(59, 130, 246, 0.25);
-        }
-
-        .steps li strong {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        /* ── Design decisions ──────────────────────── */
-        .decision-grid {
-            display: grid;
-            gap: 10px;
-            margin: 16px 0;
-        }
-
-        .decision {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .decision-key {
-            padding: 12px 16px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-            background: var(--bg-elevated);
-            border-right: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-        }
-
-        .decision-val {
-            padding: 12px 16px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* ── Syntax colors (manual) ────────────────── */
-        .kw {
-            color: #c678dd;
-        }
-
-        .fn {
-            color: #61afef;
-        }
-
-        .str {
-            color: #98c379;
-        }
-
-        .cm {
-            color: #5c6370;
-            font-style: italic;
-        }
-
-        .tp {
-            color: #e5c07b;
-        }
-
-        .op {
-            color: #abb2bf;
-        }
-
-        .dc {
-            color: #56b6c2;
-        }
-
-        .nb {
-            color: #d19a66;
-        }
-
-        /* ── Responsive ────────────────────────────── */
-        @media (max-width: 900px) {
-            .sidebar {
-                display: none;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .main-inner {
-                padding: 24px 20px 80px;
-            }
-
-            .level-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .decision {
-                grid-template-columns: 1fr;
-            }
-
-            .decision-key {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-        }
-
-        /* ── Scrollbar ──────────────────────────────── */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-accent);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-dim);
-        }
-
-        /* ── Print ──────────────────────────────────── */
-        @media print {
-            .sidebar {
-                display: none;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .main-inner {
-                max-width: 100%;
-            }
-
-            body {
-                background: white;
-                color: #1a1a1a;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Usuario - Bancos | TRASA Intranet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Paleta solicitada */
+      --c-blue-bright: #0474C4;
+      --c-blue-muted: #5379AE;
+      --c-slate-dark: #2C444C;
+      --c-blue-light: #A8C4EC;
+      --c-blue-deep: #06457F;
+      --c-navy-dark: #262B40;
+
+      /* Colores derivados para la UI */
+      --bg-main: #ffffff;
+      --bg-sidebar: var(--c-navy-dark);
+      --text-main: var(--c-slate-dark);
+      --text-light: #ffffff;
+      --border-color: var(--c-blue-light);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background-color: var(--c-navy-dark);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(6, 69, 127, 0.25) transparent;
+    }
+
+    body::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background-color: rgba(6, 69, 127, 0.2);
+      border-radius: 999px;
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(6, 69, 127, 0.35);
+    }
+
+    /* -- Sidebar -- */
+    .sidebar {
+      width: 280px;
+      background-color: var(--bg-sidebar);
+      color: var(--text-light);
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 30px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .sidebar h1 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--c-blue-light);
+      border-bottom: 1px solid rgba(168, 196, 236, 0.2);
+      padding-bottom: 15px;
+    }
+
+    .sidebar nav ul {
+      list-style: none;
+    }
+
+    .sidebar nav ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar nav ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: block;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar nav ul li a:hover {
+      background-color: var(--c-blue-deep);
+      color: var(--c-blue-light);
+    }
+
+    /* -- Main Content -- */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .main-content-inner {
+      width: 100%;
+      max-width: 1000px;
+      padding: 50px 60px;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .main-content-inner {
+        padding: 30px 24px;
+      }
+    }
+
+    /* -- Back button -- */
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--c-navy-dark);
+      color: var(--text-light);
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(168, 196, 236, 0.3);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(38, 43, 64, 0.35);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .back-btn:hover {
+      background-color: var(--c-blue-deep);
+      transform: translateY(-1px);
+    }
+
+    h2 {
+      color: var(--c-blue-deep);
+      font-size: 2rem;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--c-blue-light);
+      margin-top: 50px;
+    }
+    
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    h3 {
+      color: var(--c-blue-bright);
+      font-size: 1.3rem;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 25px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .note {
+      background-color: rgba(168, 196, 236, 0.2);
+      border-left: 4px solid var(--c-blue-muted);
+      padding: 15px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-size: 0.95rem;
+    }
+
+    .note strong {
+      color: var(--c-blue-deep);
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(44, 68, 76, 0.05);
+    }
+
+    .card-title {
+      font-weight: 600;
+      color: var(--c-blue-deep);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-color: var(--c-blue-bright);
+      color: white;
+      text-align: center;
+      line-height: 24px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background-color: var(--c-navy-dark);
+      color: white;
+      text-align: left;
+      padding: 12px 15px;
+    }
+
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--c-blue-light);
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(168, 196, 236, 0.1);
+    }
+  </style>
 </head>
-
 <body>
-    <div class="layout">
 
-        <!-- ─── Sidebar ─────────────────────────────────── -->
-        <aside class="sidebar">
-            <div class="sidebar-logo">
-                <h2>🏦 Tool Bancos</h2>
-                <span>Documentación Técnica</span>
-            </div>
-            <nav>
-                <div class="nav-group">
-                    <div class="nav-group-label">General</div>
-                    <a href="#vision">Visión General</a>
-                    <a href="#arquitectura">Arquitectura de Archivos</a>
-                </div>
-                <div class="nav-group">
-                    <div class="nav-group-label">Permisos</div>
-                    <a href="#permisos">Sistema de Permisos</a>
-                    <a href="#permisos-diagrama">Diagrama de Permisos</a>
-                    <a href="#permisos-mapa">Mapa por Endpoint</a>
-                </div>
-                <div class="nav-group">
-                    <div class="nav-group-label">Carga Manual</div>
-                    <a href="#carga-jsdoc">JSDoc de Funciones</a>
-                    <a href="#flujo-unitaria">Flujo: Carga Unitaria</a>
-                    <a href="#flujo-masiva">Flujo: Importación Masiva</a>
-                    <a href="#ejemplos">Ejemplos de Uso</a>
-                </div>
-                <div class="nav-group">
-                    <div class="nav-group-label">API</div>
-                    <a href="#api-reference">API Reference</a>
-                </div>
-                <div class="nav-group">
-                    <div class="nav-group-label">Calidad</div>
-                    <a href="#edge-cases">Edge Cases (38)</a>
-                    <a href="#decisiones">Decisiones de Diseño</a>
-                </div>
-            </nav>
-        </aside>
-
-        <!-- ─── Main content ───────────────────────────── -->
-        <main class="main">
-        <div class="main-inner">
-
-            <!-- ═══ Header ══════════════════════════════════ -->
-            <header class="page-header">
-                <h1>Tool Bancos</h1>
-                <p class="subtitle">Documentación técnica completa — TRASA Intranet</p>
-                <div class="badge-row">
-                    <span class="badge blue">Next.js + Flask</span>
-                    <span class="badge green">22 endpoints</span>
-                    <span class="badge amber">38 edge cases</span>
-                    <span class="badge purple">3 niveles de acceso</span>
-                </div>
-            </header>
-
-            <!-- ═══ 1. Visión General ══════════════════════ -->
-            <section id="vision">
-                <h2><span class="section-number">01</span> Visión General</h2>
-                <p>La <strong>tool bancos</strong> gestiona el universo de cuentas bancarias del grupo Trasa:
-                    visualización de saldos (automáticos vía DW y manuales), histórico, maestro de cuentas, catálogo de
-                    bancos y carga manual de saldos.</p>
-
-                <h3>Secciones del sidebar</h3>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sección</th>
-                                <th>Ruta</th>
-                                <th>Acceso mínimo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Dashboard</td>
-                                <td><code>/tools/bancos/dashboard</code></td>
-                                <td><code>requiere_session</code></td>
-                            </tr>
-                            <tr>
-                                <td>Saldos</td>
-                                <td><code>/tools/bancos/saldos</code></td>
-                                <td><code>requiere_session</code></td>
-                            </tr>
-                            <tr>
-                                <td>Histórico</td>
-                                <td><code>/tools/bancos/historico</code></td>
-                                <td><code>requiere_session</code></td>
-                            </tr>
-                            <tr>
-                                <td>Maestro de Cuentas</td>
-                                <td><code>/tools/bancos/maestro</code></td>
-                                <td><code>requiere_session</code></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Carga manual</strong></td>
-                                <td><code>/tools/bancos/carga-manual</code></td>
-                                <td>Permiso <code>carga-manual-saldos</code></td>
-                            </tr>
-                            <tr>
-                                <td>Configuración</td>
-                                <td><code>/tools/bancos/configuracion</code></td>
-                                <td><code>requiere_bancos_admin</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- ═══ 2. Arquitectura ════════════════════════ -->
-            <section id="arquitectura">
-                <h2><span class="section-number">02</span> Arquitectura de Archivos</h2>
-
-                <h3>Frontend — <code>app/tools/bancos/</code></h3>
-                <div class="file-tree">
-                    <span class="dir">app/tools/bancos/</span>
-                    ├── <span class="file">layout.tsx</span> <span class="comment"># Shell + sidebar condicional por
-                        permisos</span>
-                    ├── <span class="dir">dashboard/</span> <span class="comment"># Dashboard principal</span>
-                    ├── <span class="dir">saldos/</span><span class="file">page.tsx</span> <span class="comment">#
-                        Saldos actuales (DW + manuales)</span>
-                    ├── <span class="dir">historico/</span> <span class="comment"># Histórico de saldos por rango</span>
-                    ├── <span class="dir">maestro/</span> <span class="comment"># Maestro de Cuentas (solo
-                        lectura)</span>
-                    ├── <span class="dir">carga-manual/</span><span class="file">page.tsx</span> <span class="comment">#
-                        Carga manual de saldos</span>
-                    ├── <span class="dir">configuracion/</span> <span class="comment"># ABM admin-only</span>
-                    ├── <span class="dir">components/</span>
-                    │ ├── <span class="file">CargaSaldoDialog.tsx</span> <span class="comment"># Dialog de carga
-                        unitaria</span>
-                    │ ├── <span class="file">ImportSaldosDialog.tsx</span> <span class="comment"># Dialog de importación
-                        masiva</span>
-                    │ ├── <span class="file">BankBadge.tsx</span> <span class="comment"># Badge con color por
-                        banco</span>
-                    │ ├── <span class="file">BancoCuentaSheet.tsx</span> <span class="comment"># Drawer editar cuenta
-                        (admin)</span>
-                    │ ├── <span class="file">BancoCatalogoSheet.tsx</span> <span class="comment"># Drawer editar banco
-                        (admin)</span>
-                    │ ├── <span class="file">DateRangeFilter.tsx</span> <span class="comment"># Filtro de rango de
-                        fechas</span>
-                    │ ├── <span class="file">date-picker.tsx</span> <span class="comment"># DatePicker nativo</span>
-                    │ ├── <span class="file">table-filter-bar.tsx</span> <span class="comment"># Barra de filtros de
-                        tabla</span>
-                    │ └── <span class="file">table-pagination.tsx</span> <span class="comment"># Paginación
-                        compartida</span>
-                    ├── <span class="dir">hooks/</span>
-                    │ ├── <span class="file">useBancos.ts</span> <span class="comment"># SWR: saldos, maestro, catálogo,
-                        favoritas</span>
-                    │ └── <span class="file">useCargaManual.ts</span> <span class="comment"># SWR: permisos, cuentas
-                        cargables, historial</span>
-                    └── <span class="dir">lib/</span>
-                    ├── <span class="file">categorical-colors.ts</span> <span class="comment"># Paleta por
-                        entidad</span>
-                    ├── <span class="file">date-range.ts</span> <span class="comment"># Utilidades de rango de
-                        fechas</span>
-                    └── <span class="file">money-format.ts</span> <span class="comment"># Formateo de montos y
-                        fechas</span>
-                </div>
-
-                <h3>Backend — <code>api/bancos/</code></h3>
-                <div class="file-tree">
-                    <span class="dir">api/bancos/</span>
-                    ├── <span class="file">__init__.py</span>
-                    ├── <span class="file">access.py</span> <span class="comment"># is_bancos_admin,
-                        @requiere_bancos_admin</span>
-                    ├── <span class="file">permisos.py</span> <span class="comment"># Permisos granulares
-                        (TRBI-836)</span>
-                    ├── <span class="file">routes.py</span> <span class="comment"># Blueprint Flask — todos los
-                        endpoints</span>
-                    ├── <span class="dir">repositories/</span>
-                    │ ├── <span class="file">config.py</span> <span class="comment"># Cuentas
-                        habilitadas/deshabilitadas</span>
-                    │ ├── <span class="file">favoritas.py</span> <span class="comment"># Favoritas por usuario</span>
-                    │ ├── <span class="file">maestro.py</span> <span class="comment"># CRUD bancos_maestro +
-                        bancos_catalogo</span>
-                    │ ├── <span class="file">queries.py</span> <span class="comment"># Queries al DW (Postgres
-                        read-only)</span>
-                    │ └── <span class="file">saldos_manuales.py</span> <span class="comment"># CRUD
-                        bancos_saldos_manuales</span>
-                    └── <span class="dir">services/</span>
-                    ├── <span class="file">saldos.py</span> <span class="comment"># DTOs + lógica de filtrado</span>
-                    ├── <span class="file">carga_manual_template.py</span> <span class="comment"># Generación plantilla
-                        Excel</span>
-                    └── <span class="file">importacion_saldos.py</span> <span class="comment"># Pipeline importación
-                        masiva</span>
-                </div>
-
-                <h3>Migraciones SQL — <code>database/mysql-bancos/</code></h3>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Migración</th>
-                                <th>Tabla / Cambio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>018_bancos_saldos_manuales.sql</code></td>
-                                <td><code>bancos_saldos_manuales</code> — carga manual (append-only)</td>
-                            </tr>
-                            <tr>
-                                <td><code>019_bancos_user_permisos.sql</code></td>
-                                <td><code>bancos_user_permisos</code> — permisos granulares</td>
-                            </tr>
-                            <tr>
-                                <td><code>020_bancos_saldos_manuales_soft_delete.sql</code></td>
-                                <td>Soft delete: <code>deleted_at</code>, <code>deleted_by</code></td>
-                            </tr>
-                            <tr>
-                                <td><code>021_bancos_maestro_origen_dato.sql</code></td>
-                                <td><code>origen_dato</code> (API / Scrapping)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- ═══ 3. Sistema de Permisos ═════════════════ -->
-            <section id="permisos">
-                <h2><span class="section-number">03</span> Sistema de Permisos</h2>
-
-                <h3>Tres niveles de acceso</h3>
-                <div class="level-cards">
-                    <div class="level-card l1">
-                        <div class="level-tag">Nivel 1 — Session</div>
-                        <div class="level-name"><code>@requiere_session</code></div>
-                        <div class="level-desc">Cualquier usuario autenticado con acceso a la tool. Puede ver Dashboard,
-                            Saldos, Histórico, Maestro de Cuentas (solo lectura), marcar/desmarcar favoritas.</div>
-                    </div>
-                    <div class="level-card l2">
-                        <div class="level-tag">Nivel 2 — Permiso granular</div>
-                        <div class="level-name"><code>carga-manual-saldos</code></div>
-                        <div class="level-desc">Usuario con fila activa en <code>bancos_user_permisos</code>, O
-                            cualquier admin (bypass). Puede cargar saldos (unitario y masivo), descargar plantilla, ver
-                            historial de cargas.</div>
-                    </div>
-                    <div class="level-card l3">
-                        <div class="level-tag">Nivel 3 — Admin</div>
-                        <div class="level-name"><code>@requiere_bancos_admin</code></div>
-                        <div class="level-desc">Company admin o <code>access_level='admin'</code> en
-                            <code>user_tool_access</code>. TODO lo anterior + Configuración, ABM maestro/catálogo,
-                            habilitar/deshabilitar cuentas, gestionar permisos, eliminar cargas.</div>
-                    </div>
-                </div>
-
-                <h3>Tabla SQL — <code>bancos_user_permisos</code></h3>
-                <div class="code-label">019_bancos_user_permisos.sql</div>
-                <pre><span class="kw">CREATE TABLE IF NOT EXISTS</span> <span class="fn">bancos_user_permisos</span> (
-  id          <span class="tp">BIGINT UNSIGNED</span> <span class="kw">NOT NULL AUTO_INCREMENT</span>,
-  user_id     <span class="tp">BIGINT UNSIGNED</span> <span class="kw">NOT NULL</span>,
-  company_id  <span class="tp">BIGINT UNSIGNED</span> <span class="kw">NOT NULL</span>,
-  permiso_key <span class="tp">ENUM</span>(<span class="str">'carga-manual-saldos'</span>) <span class="kw">NOT NULL</span>,
-  is_active   <span class="tp">TINYINT(1)</span>      <span class="kw">DEFAULT</span> <span class="nb">1</span>,
-  assigned_by <span class="tp">BIGINT UNSIGNED</span> <span class="kw">NOT NULL</span>,
-  created_at  <span class="tp">DATETIME</span>        <span class="kw">NOT NULL DEFAULT CURRENT_TIMESTAMP</span>,
-  updated_at  <span class="tp">DATETIME</span>        <span class="kw">NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</span>,
-  <span class="kw">PRIMARY KEY</span> (id),
-  <span class="kw">UNIQUE KEY</span> uq_bancos_user_permiso (user_id, company_id, permiso_key)
-);</pre>
-
-                <h3>Endpoint <code>/api/bancos/permisos/me</code></h3>
-                <p>Devuelve los permisos efectivos del usuario en sesión. Responde <strong>200 siempre</strong> (nunca
-                    403), para que el frontend gatee el sidebar sin generar errores en el network tab.</p>
-                <div class="code-label">Response 200</div>
-                <pre>{
-  <span class="str">"ok"</span>: <span class="nb">true</span>,
-  <span class="str">"data"</span>: {
-    <span class="str">"permisos"</span>: [<span class="str">"carga-manual-saldos"</span>],
-    <span class="str">"esAdmin"</span>: <span class="nb">false</span>
-  }
-}</pre>
-            </section>
-
-            <!-- ═══ Diagrama de Permisos ═══════════════════ -->
-            <section id="permisos-diagrama">
-                <h2><span class="section-number">03.1</span> Diagrama — Flujo de Autorización</h2>
-                <div class="mermaid-wrap">
-                    <div class="mermaid">
-                        flowchart TD
-                        A["Request a endpoint de bancos"] --> B{"¿Tiene sesión?"}
-                        B -- No --> C["Redirect a /login"]
-                        B -- Sí --> D{"¿Endpoint requiere\npermiso especial?"}
-                        D -- "Solo @requiere_session" --> E["✓ Acceso permitido\n(Dashboard, Saldos, Histórico,
-                        Maestro)"]
-                        D -- "@requiere_bancos_permiso" --> F["get_user_permisos(user_id)"]
-                        F --> G["resolve_company_id(user_id)"]
-                        G --> H{"¿Tiene acceso a bancos\nen alguna empresa?"}
-                        H -- No --> I["(set(), False) → 403"]
-                        H -- Sí --> J{"¿Es admin de bancos?"}
-                        J -- Sí --> K["Bypass: TODOS los permisos"]
-                        J -- No --> L["Consulta bancos_user_permisos\nFiltrado contra whitelist"]
-                        L --> M{"¿permiso_key en resultado?"}
-                        M -- Sí --> N["✓ 200"]
-                        M -- No --> O["✗ 403"]
-                        D -- "@requiere_bancos_admin" --> P["is_bancos_admin(user_id)"]
-                        P --> Q{"¿Company admin\nO admin de bancos?"}
-                        Q -- Sí --> R["✓ 200"]
-                        Q -- No --> S["✗ 403"]
-
-                        style I fill:#450a0a,stroke:#ef4444,color:#fecaca
-                        style O fill:#450a0a,stroke:#ef4444,color:#fecaca
-                        style S fill:#450a0a,stroke:#ef4444,color:#fecaca
-                        style E fill:#064e3b,stroke:#10b981,color:#d1fae5
-                        style K fill:#064e3b,stroke:#10b981,color:#d1fae5
-                        style N fill:#064e3b,stroke:#10b981,color:#d1fae5
-                        style R fill:#064e3b,stroke:#10b981,color:#d1fae5
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══ 4. JSDoc ═══════════════════════════════ -->
-            <section id="carga-jsdoc">
-                <h2><span class="section-number">04</span> JSDoc de Funciones Principales</h2>
-
-                <h3>Backend — <code>permisos.py</code></h3>
-
-                <h4><code>get_user_permisos(user_id)</code></h4>
-                <div class="code-label">api/bancos/permisos.py</div>
-                <pre><span class="kw">def</span> <span class="fn">get_user_permisos</span>(user_id):
-    <span class="str">"""
-    Resuelve los permisos efectivos del usuario sobre bancos.
-
-    @param user_id: ID del usuario en sesión. None → fail-closed.
-    @type  user_id: int | None
-
-    @returns: Tupla (permisos: set[str], es_admin: bool).
-              - Admin → (set(BANCOS_PERMISOS), True) — bypass total.
-              - Con permiso → ({"carga-manual-saldos"}, False).
-              - Sin acceso → (set(), False) — fail-closed.
-    @rtype:   tuple[set[str], bool]
-
-    @throws:  No lanza excepciones. Fallo de conexión propaga
-              mysql.connector.Error.
-
-    @example:
-        permisos, es_admin = get_user_permisos(42)
-        if "carga-manual-saldos" in permisos:
-            # puede cargar saldos
-        if es_admin:
-            # puede administrar Configuración + eliminar cargas
-    """</span></pre>
-
-                <h4><code>tiene_permiso(user_id, permiso_key)</code></h4>
-                <div class="code-label">api/bancos/permisos.py</div>
-                <pre><span class="kw">def</span> <span class="fn">tiene_permiso</span>(user_id, permiso_key) -> <span class="tp">bool</span>:
-    <span class="str">"""
-    True si el usuario alcanza `permiso_key`.
-
-    @param user_id:     ID del usuario. None → False.
-    @param permiso_key: Clave del permiso. Debe estar en BANCOS_PERMISOS.
-    @type  user_id:     int | None
-    @type  permiso_key: str
-
-    @returns: True si tiene el permiso (directo o por bypass admin).
-    @rtype:   bool
-
-    @throws:  Nunca lanza. Clave fuera de BANCOS_PERMISOS → deniega.
-
-    @example:
-        if tiene_permiso(session.get("userid"), "carga-manual-saldos"):
-            # permitir la operación
-    """</span></pre>
-
-                <h4><code>requiere_bancos_permiso(permiso_key)</code></h4>
-                <div class="code-label">api/bancos/permisos.py</div>
-                <pre><span class="kw">def</span> <span class="fn">requiere_bancos_permiso</span>(permiso_key):
-    <span class="str">"""
-    Decorador de ruta Flask. Gatea el acceso por permiso granular.
-
-    @param permiso_key: Clave del permiso requerido.
-    @type  permiso_key: str
-
-    @returns: Decorador. Si el usuario no tiene el permiso,
-              retorna {"ok": false, "error": "No autorizado."}, 403.
-
-    @example:
-        @bp.route("/api/bancos/saldos-manuales/cuentas")
-        @requiere_session
-        @permisos.requiere_bancos_permiso("carga-manual-saldos")
-        def saldos_manuales_cuentas():
-            ...
-    """</span></pre>
-
-                <h3>Backend — <code>importacion_saldos.py</code></h3>
-
-                <h4><code>validar_importacion(*, archivo_bytes, filename)</code></h4>
-                <div class="code-label">api/bancos/services/importacion_saldos.py</div>
-                <pre><span class="kw">def</span> <span class="fn">validar_importacion</span>(*, archivo_bytes, filename):
-    <span class="str">"""
-    Dry-run de importación masiva. NUNCA escribe en la base.
-
-    @param archivo_bytes: Contenido binario del archivo subido.
-    @param filename:      Nombre original (para detectar formato).
-    @type  archivo_bytes: bytes
-    @type  filename:      str
-
-    @returns: Tupla (ok: bool, data: dict).
-              ok=True  → data con totalFilas, validas, errores, advertencias.
-              ok=False → data con {"status": int, "error": str}.
-    @rtype:   tuple[bool, dict]
-
-    @throws:  No lanza. Errores de parseo se capturan internamente.
-
-    @example:
-        ok, data = validar_importacion(
-            archivo_bytes=archivo.read(),
-            filename="saldos-junio.xlsx"
-        )
-        # data = {
-        #   "totalFilas": 120, "validas": 43,
-        #   "errores": [...], "advertencias": [...]
-        # }
-    """</span></pre>
-
-                <h4><code>importar(*, user_id, archivo_bytes, filename)</code></h4>
-                <div class="code-label">api/bancos/services/importacion_saldos.py</div>
-                <pre><span class="kw">def</span> <span class="fn">importar</span>(*, user_id, archivo_bytes, filename):
-    <span class="str">"""
-    Re-valida todo y escribe en transacción única (todo o nada).
-
-    @param user_id:       ID del usuario (auditoría).
-    @param archivo_bytes: Contenido binario del archivo.
-    @param filename:      Nombre original del archivo.
-
-    @returns: (ok: bool, data: dict).
-              ok=True  → {"importBatchId": uuid, "insertadas": N, ...}.
-              ok=False → {"status": 422, "error": "...", "data": {...}}.
-
-    @throws:  No lanza. Transacción se revierte automáticamente.
-
-    @example:
-        ok, data = importar(
-            user_id=42,
-            archivo_bytes=archivo.read(),
-            filename="saldos-junio.xlsx"
-        )
-    """</span></pre>
-
-                <h3>Frontend — <code>useCargaManual.ts</code></h3>
-
-                <h4><code>useBancosPermisos()</code></h4>
-                <div class="code-label">hooks/useCargaManual.ts</div>
-                <pre><span class="cm">/**
- * Hook de permisos efectivos del usuario para la tool bancos.
- *
- * Consume GET /api/bancos/permisos/me — responde 200 siempre (nunca 403),
- * para gatear el sidebar sin errores en network tab.
- *
- * @returns {Object} Estado de permisos.
- * @returns {string[]}  returns.permisos         - permiso_keys activas.
- * @returns {boolean}   returns.esAdmin           - true si es admin.
- * @returns {boolean}   returns.puedeCargarManual - true si tiene permiso.
- * @returns {boolean}   returns.isLoading         - true mientras resuelve.
- *
- * @example
- * const { puedeCargarManual, isLoading } = useBancosPermisos();
- * if (isLoading) return &lt;Skeleton /&gt;;
- * if (!puedeCargarManual) return &lt;SinAcceso /&gt;;
- */</span>
-<span class="kw">export function</span> <span class="fn">useBancosPermisos</span>() { ... }</pre>
-
-                <h4><code>useCrearSaldoManual()</code></h4>
-                <div class="code-label">hooks/useCargaManual.ts</div>
-                <pre><span class="cm">/**
- * Hook para crear un saldo manual (carga unitaria).
- * POST /api/bancos/saldos-manuales + revalida 3 caches en paralelo.
- *
- * @returns {Function} async (fields: CrearSaldoManualFields) => Promise
- *
- * @param {number}        fields.maestroId    - PK de bancos_maestro.
- * @param {string}        fields.fechaSaldo   - YYYY-MM-DD (no futura).
- * @param {number|string} fields.saldo        - Monto (puede ser negativo).
- * @param {string|null}   [fields.observaciones] - Texto libre, ≤255 chars.
- *
- * @returns {Promise&lt;{ ok, error?, id? }&gt;}
- *
- * @example
- * const crearSaldo = useCrearSaldoManual();
- * const res = await crearSaldo({
- *   maestroId: 157,
- *   fechaSaldo: "2026-09-23",
- *   saldo: -45230.50,
- *   observaciones: "Saldo según extracto papel",
- * });
- * if (res.ok) toast.success("Saldo cargado.");
- */</span>
-<span class="kw">export function</span> <span class="fn">useCrearSaldoManual</span>() { ... }</pre>
-
-                <h4><code>useEliminarSaldoManual()</code></h4>
-                <div class="code-label">hooks/useCargaManual.ts</div>
-                <pre><span class="cm">/**
- * Hook para eliminar un saldo manual (admin only).
- * DELETE /api/bancos/saldos-manuales/&lt;id&gt; — baja lógica.
- *
- * @returns {Function} async (id: number) => Promise&lt;{ ok, error? }&gt;
- *
- * @throws  No lanza. Un 403 por no ser admin → { ok: false, error }.
- *
- * @example
- * const eliminar = useEliminarSaldoManual();
- * if (window.confirm("¿Eliminar?")) {
- *   const res = await eliminar(1234);
- *   if (!res.ok) toast.error(res.error);
- * }
- */</span>
-<span class="kw">export function</span> <span class="fn">useEliminarSaldoManual</span>() { ... }</pre>
-            </section>
-
-            <!-- ═══ 5. Flujo Carga Unitaria ════════════════ -->
-            <section id="flujo-unitaria">
-                <h2><span class="section-number">05</span> Diagrama — Carga Unitaria</h2>
-                <div class="mermaid-wrap">
-                    <div class="mermaid">
-                        flowchart TD
-                        A["Usuario abre /tools/bancos/carga-manual"] --> B{"¿Tiene permiso\ncarga-manual-saldos?"}
-                        B -- No --> C["Bloque 'Sin acceso'\n(destructive banner)"]
-                        B -- Sí --> D["Pestaña Cuentas\nLista de cuentas no automatizadas"]
-                        D --> E["Clic en ⊕ de una cuenta"]
-                        E --> F["CargaSaldoDialog se abre\nMuestra empresa, banco, cuenta\n+ saldo vigente actual si
-                        existe"]
-                        F --> G["Usuario completa:\n• Fecha del saldo ≤ hoy\n• Monto, puede ser negativo\n•
-                        Observaciones, opcional ≤255"]
-                        G --> H["Clic Confirmar"]
-                        H --> I["POST /api/bancos/saldos-manuales"]
-                        I --> J{"Backend valida"}
-                        J -- "maestroId inválido" --> K["404: No existe cuenta"]
-                        J -- "Cuenta automatizada" --> L["409: No cargable"]
-                        J -- "Fecha futura" --> M["400: Fecha inválida"]
-                        J -- "Saldo no numérico" --> N["400: Saldo inválido"]
-                        J -- "✓ Todo OK" --> O["INSERT en bancos_saldos_manuales\nappend-only, nueva fila siempre"]
-                        O --> P["201 Created"]
-                        P --> Q["Frontend invalida caches:\nCuentas + Saldos + Registro"]
-                        Q --> R["toast.success\nDialog se cierra"]
-
-                        style B fill:#1e293b,stroke:#f59e0b,color:#fef3c7
-                        style J fill:#1e293b,stroke:#f59e0b,color:#fef3c7
-                        style O fill:#064e3b,stroke:#10b981,color:#d1fae5
-                        style C fill:#450a0a,stroke:#ef4444,color:#fecaca
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══ 6. Flujo Importación Masiva ════════════ -->
-            <section id="flujo-masiva">
-                <h2><span class="section-number">06</span> Diagrama — Importación Masiva</h2>
-                <div class="mermaid-wrap">
-                    <div class="mermaid">
-                        flowchart TD
-                        A["Clic Importar Excel"] --> B["ImportSaldosDialog\nStep: elegir"]
-                        B --> C["Link: Descargar plantilla\nGET /saldos-manuales/plantilla\nXLSX pre-cargada con
-                        cuentas"]
-                        B --> D["Usuario sube archivo\nxlsx, xls o csv"]
-                        D --> E["Clic Validar archivo"]
-                        E --> F["POST /saldos-manuales/importar/validar\nDry-run, NUNCA escribe"]
-                        F --> G{"¿Archivo legible?\n¿Headers completos?"}
-                        G -- No --> H["Error a nivel archivo\nVuelve a step elegir"]
-                        G -- Sí --> I["Step: revisar\nResumen: Total, Válidas\nCuentas, Reemplazan vigente"]
-                        I --> J{"¿Errores = 0?"}
-                        J -- "Hay errores" --> K["Lista de errores\nBotón Confirmar deshabilitado"]
-                        J -- "Sin errores" --> L["Pueden haber advertencias\nBotón Continuar habilitado"]
-                        L --> M["Clic Continuar y guardar"]
-                        M --> N["POST /saldos-manuales/importar\nRe-valida TODO desde cero"]
-                        N --> O{"¿Pasa revalidación?"}
-                        O -- "Errores 422" --> P["Error: datos cambiaron\nNada se escribió"]
-                        O -- "✓ OK" --> Q["Transacción única:\ninsert_bulk + import_batch_id"]
-                        Q --> R["invalidateCargaManual\ntoast.success\nDialog se cierra"]
-
-                        style G fill:#1e293b,stroke:#f59e0b,color:#fef3c7
-                        style J fill:#1e293b,stroke:#f59e0b,color:#fef3c7
-                        style O fill:#1e293b,stroke:#f59e0b,color:#fef3c7
-                        style Q fill:#064e3b,stroke:#10b981,color:#d1fae5
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══ 7. Ejemplos de Uso ═════════════════════ -->
-            <section id="ejemplos">
-                <h2><span class="section-number">07</span> Ejemplos de Uso</h2>
-
-                <h3>Carga unitaria — paso a paso</h3>
-                <ol class="steps">
-                    <li>Entrar a <strong>Bancos → Carga manual</strong> (requiere permiso
-                        <code>carga-manual-saldos</code>).</li>
-                    <li>En la pestaña <strong>Cuentas</strong> se listan todas las cuentas no automatizadas.</li>
-                    <li>Hacer clic en el botón <strong>⊕</strong> de la cuenta a cargar.</li>
-                    <li>Completar <strong>Fecha del saldo</strong> (no puede ser futura), <strong>Saldo</strong> (puede
-                        ser negativo para cuentas en descubierto) y opcionalmente <strong>Observaciones</strong> (máx
-                        255 caracteres).</li>
-                    <li>Si ya existía un saldo vigente, se muestra un aviso: <em>"Esta carga lo va a reemplazar como
-                            vigente."</em></li>
-                    <li>Clic <strong>Confirmar</strong> → toast de éxito. La nueva carga pasa a ser la vigente.</li>
-                </ol>
-
-                <h3>Importación masiva — paso a paso</h3>
-                <ol class="steps">
-                    <li>En la pestaña <strong>Cuentas</strong>, clic en <strong>Importar Excel</strong>.</li>
-                    <li>Descargar la <strong>plantilla</strong> (ya viene con una fila por cuenta cargable).</li>
-                    <li>Completar solo <strong>Fecha del saldo</strong> y <strong>Saldo</strong> en las filas que se
-                        necesitan. El resto puede quedar vacío.</li>
-                    <li>Subir el archivo → clic <strong>Validar archivo</strong> (dry-run, no escribe nada).</li>
-                    <li>Revisar el resumen: total, válidas, errores, advertencias.</li>
-                    <li>Si hay errores → corregir el archivo y volver a subir.</li>
-                    <li>Si no hay errores → clic <strong>Continuar y guardar</strong> (inserta todo en una transacción
-                        atómica).</li>
-                    <li>Toast de éxito con cantidad de cargas insertadas.</li>
-                </ol>
-            </section>
-
-            <!-- ═══ 8. API Reference ══════════════════════ -->
-            <section id="api-reference">
-                <h2><span class="section-number">08</span> API Reference</h2>
-
-                <h3>Carga Manual de Saldos</h3>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/bancos/saldos-manuales/cuentas</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>carga-manual-saldos</code></p>
-                        <p>Lista el universo de cuentas no automatizadas con su saldo vigente anidado.</p>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method post">POST</span>
-                        <span class="endpoint-path">/api/bancos/saldos-manuales</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>carga-manual-saldos</code> &nbsp;|&nbsp;
-                            <strong>Modelo:</strong> append-only</p>
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Campo</th>
-                                        <th>Tipo</th>
-                                        <th>Req</th>
-                                        <th>Validación</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><code>maestroId</code></td>
-                                        <td><code>int</code></td>
-                                        <td>✓</td>
-                                        <td>Debe existir en <code>bancos_maestro</code></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>fechaSaldo</code></td>
-                                        <td><code>string</code></td>
-                                        <td>✓</td>
-                                        <td>Formato <code>YYYY-MM-DD</code>, no futura</td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>saldo</code></td>
-                                        <td><code>number|string</code></td>
-                                        <td>✓</td>
-                                        <td>Decimal válido, puede ser negativo</td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>observaciones</code></td>
-                                        <td><code>string|null</code></td>
-                                        <td>✗</td>
-                                        <td>Máx 255 chars, se trimea</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Status</th>
-                                        <th>Significado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><code>201</code></td>
-                                        <td>Carga creada. Body: <code>{ ok, data: { id, saldo, fechaSaldo } }</code>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>400</code></td>
-                                        <td>maestroId / fechaSaldo / saldo inválidos</td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>403</code></td>
-                                        <td>Sin permiso <code>carga-manual-saldos</code></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>404</code></td>
-                                        <td>No existe cuenta con ese maestroId</td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>409</code></td>
-                                        <td>Cuenta automatizada o deshabilitada</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/bancos/saldos-manuales/plantilla</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>carga-manual-saldos</code> &nbsp;|&nbsp; Response: archivo
-                            <code>.xlsx</code> como attachment</p>
-                        <p>Una fila por cada cuenta cargable: ID Interno, Empresa, Banco, Cuenta, Moneda, Fecha del
-                            saldo, Saldo.</p>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method post">POST</span>
-                        <span class="endpoint-path">/api/bancos/saldos-manuales/importar/validar</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>carga-manual-saldos</code> &nbsp;|&nbsp; Content-Type:
-                            <code>multipart/form-data</code></p>
-                        <p><strong>NUNCA escribe.</strong> Dry-run puro. Devuelve resumen con errores y advertencias.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method post">POST</span>
-                        <span class="endpoint-path">/api/bancos/saldos-manuales/importar</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>carga-manual-saldos</code> &nbsp;|&nbsp; Re-valida todo desde
-                            cero.</p>
-                        <p>Si 0 errores → transacción única (todo o nada) con <code>import_batch_id</code> compartido.
-                            Si hay errores → 422, nada se escribe.</p>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/bancos/saldos-manuales/historial</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>carga-manual-saldos</code></p>
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Param</th>
-                                        <th>Tipo</th>
-                                        <th>Default</th>
-                                        <th>Descripción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><code>desde</code></td>
-                                        <td><code>string</code></td>
-                                        <td>—</td>
-                                        <td>Formato <code>YYYY-MM-DD</code></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>hasta</code></td>
-                                        <td><code>string</code></td>
-                                        <td>—</td>
-                                        <td>Formato <code>YYYY-MM-DD</code></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>maestroId</code></td>
-                                        <td><code>int</code></td>
-                                        <td>—</td>
-                                        <td>Filtro opcional por cuenta</td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>page</code></td>
-                                        <td><code>int</code></td>
-                                        <td><code>1</code></td>
-                                        <td>Página actual</td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>pageSize</code></td>
-                                        <td><code>int</code></td>
-                                        <td><code>50</code></td>
-                                        <td>Items por página (máx 200)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method delete">DELETE</span>
-                        <span class="endpoint-path">/api/bancos/saldos-manuales/&lt;id&gt;</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>requiere_bancos_admin</code> (no basta con
-                            <code>carga-manual-saldos</code>)</p>
-                        <p>Baja lógica: marca <code>deleted_at</code>/<code>deleted_by</code>, no borra la fila. Única
-                            forma de corregir una carga con fecha mal tipeada (modelo append-only).</p>
-                    </div>
-                </div>
-
-                <h3>Permisos</h3>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/bancos/permisos/me</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>requiere_session</code> — Permisos efectivos del usuario.
-                            Responde 200 siempre.</p>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/bancos/permisos/usuarios</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>requiere_bancos_admin</code> — Lista usuarios con acceso a la
-                            tool + sus permisos.</p>
-                    </div>
-                </div>
-
-                <div class="endpoint">
-                    <div class="endpoint-header">
-                        <span class="method put">PUT</span>
-                        <span class="endpoint-path">/api/bancos/permisos/usuarios/&lt;target_user_id&gt;</span>
-                    </div>
-                    <div class="endpoint-body">
-                        <p><strong>Permiso:</strong> <code>requiere_bancos_admin</code> — Asignar o revocar permiso.
-                            Body: <code>{ permisoKey, activo: bool }</code></p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══ Mapa de permisos ══════════════════════ -->
-            <section id="permisos-mapa">
-                <h2><span class="section-number">08.1</span> Mapa de Permisos por Endpoint</h2>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Endpoint</th>
-                                <th>Método</th>
-                                <th>Decorador</th>
-                                <th>Quién puede</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>/api/bancos/saldos</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_session</code></td>
-                                <td>Cualquier usuario con acceso</td>
-                            </tr>
-                            <tr>
-                                <td><code>/api/bancos/saldos/historico</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_session</code></td>
-                                <td>Cualquier usuario con acceso</td>
-                            </tr>
-                            <tr>
-                                <td><code>/api/bancos/cuentas</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_session</code></td>
-                                <td>Cualquier usuario con acceso</td>
-                            </tr>
-                            <tr>
-                                <td><code>/api/bancos/maestro/picker</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_session</code></td>
-                                <td>Cualquier usuario con sesión</td>
-                            </tr>
-                            <tr>
-                                <td><code>/api/bancos/favoritas/&lt;id&gt;</code></td>
-                                <td>POST/DEL</td>
-                                <td><code>@requiere_session</code></td>
-                                <td>Cualquier usuario con acceso</td>
-                            </tr>
-                            <tr>
-                                <td><code>/api/bancos/permisos/me</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_session</code></td>
-                                <td>Cualquier usuario con acceso</td>
-                            </tr>
-                            <tr style="background: var(--green-bg);">
-                                <td><code>/api/bancos/saldos-manuales/cuentas</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_bancos_permiso</code></td>
-                                <td>Permiso <code>carga-manual-saldos</code></td>
-                            </tr>
-                            <tr style="background: var(--green-bg);">
-                                <td><code>/api/bancos/saldos-manuales/plantilla</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_bancos_permiso</code></td>
-                                <td>Permiso <code>carga-manual-saldos</code></td>
-                            </tr>
-                            <tr style="background: var(--green-bg);">
-                                <td><code>/api/bancos/saldos-manuales</code></td>
-                                <td>POST</td>
-                                <td><code>@requiere_bancos_permiso</code></td>
-                                <td>Permiso <code>carga-manual-saldos</code></td>
-                            </tr>
-                            <tr style="background: var(--green-bg);">
-                                <td><code>/api/bancos/saldos-manuales/importar/validar</code></td>
-                                <td>POST</td>
-                                <td><code>@requiere_bancos_permiso</code></td>
-                                <td>Permiso <code>carga-manual-saldos</code></td>
-                            </tr>
-                            <tr style="background: var(--green-bg);">
-                                <td><code>/api/bancos/saldos-manuales/importar</code></td>
-                                <td>POST</td>
-                                <td><code>@requiere_bancos_permiso</code></td>
-                                <td>Permiso <code>carga-manual-saldos</code></td>
-                            </tr>
-                            <tr style="background: var(--green-bg);">
-                                <td><code>/api/bancos/saldos-manuales/historial</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_bancos_permiso</code></td>
-                                <td>Permiso <code>carga-manual-saldos</code></td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/saldos-manuales/&lt;id&gt;</code></td>
-                                <td>DELETE</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/maestro</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/maestro/&lt;id&gt;</code></td>
-                                <td>PUT</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/maestro/pendiente</code></td>
-                                <td>POST</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/maestro/pendiente/&lt;id&gt;</code></td>
-                                <td>PUT</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/catalogo</code></td>
-                                <td>GET/POST</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/catalogo/&lt;id&gt;</code></td>
-                                <td>PUT</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/permisos/usuarios</code></td>
-                                <td>GET</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                            <tr style="background: var(--red-bg);">
-                                <td><code>/api/bancos/permisos/usuarios/&lt;id&gt;</code></td>
-                                <td>PUT</td>
-                                <td><code>@requiere_bancos_admin</code></td>
-                                <td>Solo admin</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- ═══ 9. Edge Cases ═════════════════════════ -->
-            <section id="edge-cases">
-                <h2><span class="section-number">09</span> Edge Cases Cubiertos</h2>
-
-                <div class="edge-group">
-                    <div class="edge-group-title">Permisos y Acceso <span class="count">10</span></div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Edge Case</th>
-                                    <th>Comportamiento</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td><code>user_id</code> es <code>None</code></td>
-                                    <td>Fail-closed: <code>(set(), False)</code></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><code>company_id</code> no resoluble</td>
-                                    <td>Fail-closed: <code>(set(), False)</code></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td><code>permiso_key</code> fuera de <code>BANCOS_PERMISOS</code> (typo)</td>
-                                    <td>Deniega siempre, nunca permite</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Clave retirada del código pero presente en DB</td>
-                                    <td>Filtrada contra whitelist en Python</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Admin intenta modificar su propio permiso</td>
-                                    <td>409: "No podés modificar tu propio permiso"</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td><code>target_user_id</code> inválido (no int)</td>
-                                    <td>400: "target_user_id inválido"</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Revocar permiso ya no activo</td>
-                                    <td>Idempotente: no falla</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Asignar permiso ya activo</td>
-                                    <td>Upsert: <code>ON DUPLICATE KEY UPDATE is_active=1</code></td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>URL <code>/carga-manual</code> navegada a mano sin permiso</td>
-                                    <td>Skeleton → bloque destructive</td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Sidebar: flash del item antes de resolver permiso</td>
-                                    <td>Se oculta durante <code>permisosLoading</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="edge-group">
-                    <div class="edge-group-title">Carga Unitaria <span class="count">10</span></div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Edge Case</th>
-                                    <th>Comportamiento</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>11</td>
-                                    <td><code>maestroId</code> no existe</td>
-                                    <td>404</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>Cuenta automatizada (tiene fila en DW)</td>
-                                    <td>409: no cargable</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>Cuenta deshabilitada</td>
-                                    <td>409: no cargable</td>
-                                </tr>
-                                <tr>
-                                    <td>14</td>
-                                    <td><code>fechaSaldo</code> futura</td>
-                                    <td>400</td>
-                                </tr>
-                                <tr>
-                                    <td>15</td>
-                                    <td><code>fechaSaldo</code> formato incorrecto</td>
-                                    <td>400</td>
-                                </tr>
-                                <tr>
-                                    <td>16</td>
-                                    <td>Saldo negativo (descubierto)</td>
-                                    <td>Válido — se permite</td>
-                                </tr>
-                                <tr>
-                                    <td>17</td>
-                                    <td>Saldo con coma decimal (<code>"1.234,56"</code>)</td>
-                                    <td>Se reemplaza <code>,</code> → <code>.</code> antes de <code>Decimal()</code>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>18</td>
-                                    <td>Saldo no numérico</td>
-                                    <td>400</td>
-                                </tr>
-                                <tr>
-                                    <td>19</td>
-                                    <td>Observaciones &gt; 255 chars</td>
-                                    <td>Se trunca a 255</td>
-                                </tr>
-                                <tr>
-                                    <td>20</td>
-                                    <td>Carga para misma cuenta+fecha</td>
-                                    <td>Append-only: nueva fila, pasa a ser vigente</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="edge-group">
-                    <div class="edge-group-title">Importación Masiva <span class="count">11</span></div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Edge Case</th>
-                                    <th>Comportamiento</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>21</td>
-                                    <td>Archivo ilegible / no Excel</td>
-                                    <td>400: "No se pudo leer el archivo"</td>
-                                </tr>
-                                <tr>
-                                    <td>22</td>
-                                    <td>Headers faltantes</td>
-                                    <td>400: lista de columnas faltantes</td>
-                                </tr>
-                                <tr>
-                                    <td>23</td>
-                                    <td>Cuenta desconocida (ID Interno no existe)</td>
-                                    <td>Error por fila: "cuenta_desconocida"</td>
-                                </tr>
-                                <tr>
-                                    <td>24</td>
-                                    <td>Cuenta automatizada o deshabilitada</td>
-                                    <td>Error por fila (misma validación que unitaria)</td>
-                                </tr>
-                                <tr>
-                                    <td>25</td>
-                                    <td>Fecha anterior a apertura de cuenta</td>
-                                    <td>Error por fila</td>
-                                </tr>
-                                <tr>
-                                    <td>26</td>
-                                    <td>Moneda del archivo ≠ moneda real</td>
-                                    <td>Advertencia (no bloquea), se carga con moneda real</td>
-                                </tr>
-                                <tr>
-                                    <td>27</td>
-                                    <td>Ya existe carga vigente para cuenta+fecha</td>
-                                    <td>Advertencia: "reemplaza_vigente"</td>
-                                </tr>
-                                <tr>
-                                    <td>28</td>
-                                    <td>Race condition: datos cambian entre /validar y /importar</td>
-                                    <td><code>/importar</code> re-valida todo desde cero</td>
-                                </tr>
-                                <tr>
-                                    <td>29</td>
-                                    <td>Cualquier error → nada se escribe</td>
-                                    <td>Transacción atómica: todo o nada</td>
-                                </tr>
-                                <tr>
-                                    <td>30</td>
-                                    <td>Archivo sin filas con datos</td>
-                                    <td>ok=true, insertadas=0</td>
-                                </tr>
-                                <tr>
-                                    <td>31</td>
-                                    <td>N filas insertadas en mismo segundo</td>
-                                    <td>Desempate por <code>id</code> (AUTO_INCREMENT)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="edge-group">
-                    <div class="edge-group-title">Eliminación + Saldo Vigente <span class="count">7</span></div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Edge Case</th>
-                                    <th>Comportamiento</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>32</td>
-                                    <td>ID de carga no existe</td>
-                                    <td>404</td>
-                                </tr>
-                                <tr>
-                                    <td>33</td>
-                                    <td>No es admin</td>
-                                    <td>403 (<code>@requiere_bancos_admin</code>)</td>
-                                </tr>
-                                <tr>
-                                    <td>34</td>
-                                    <td>Carga ya eliminada</td>
-                                    <td>Sigue visible en registro como "Eliminada"</td>
-                                </tr>
-                                <tr>
-                                    <td>35</td>
-                                    <td>Eliminar carga vigente</td>
-                                    <td>Soft delete, la anterior pasa a ser vigente</td>
-                                </tr>
-                                <tr>
-                                    <td>36</td>
-                                    <td>Cuenta sin ninguna carga</td>
-                                    <td>saldo = null, se muestra "—"</td>
-                                </tr>
-                                <tr>
-                                    <td>37</td>
-                                    <td>Múltiples cargas misma fecha</td>
-                                    <td>Vigente = la de mayor <code>id</code> (determinista)</td>
-                                </tr>
-                                <tr>
-                                    <td>38</td>
-                                    <td>Moneda cambia en ABM después de carga</td>
-                                    <td>Historial conserva moneda original (snapshot)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══ 10. Decisiones de Diseño ══════════════ -->
-            <section id="decisiones">
-                <h2><span class="section-number">10</span> Decisiones de Diseño</h2>
-                <div class="decision-grid">
-                    <div class="decision">
-                        <div class="decision-key">Tabla append-only (sin UPDATE)</div>
-                        <div class="decision-val">Cada carga es un registro contable con autoría. Editar borraría la
-                            traza. Corregir = cargar de nuevo.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">Saldo vigente derivado</div>
-                        <div class="decision-val">No se almacena. Se calcula:
-                            <code>MAX(fecha_saldo, created_at, id)</code>. Evita inconsistencias entre tablas.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">Moneda como snapshot</div>
-                        <div class="decision-val">Si el ABM corrige la moneda, el historial conserva en qué moneda se
-                            cargó cada importe.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">FK por <code>maestro_id</code>, no <code>accounts_id</code></div>
-                        <div class="decision-val">Cubre cuentas pendientes (sin ID de DW). 100% del universo cargable
-                            tiene <code>maestro_id</code>.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">Importación re-valida todo</div>
-                        <div class="decision-val">Elimina race conditions entre <code>/validar</code> y
-                            <code>/importar</code>. Otro usuario pudo cambiar datos entre medio.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">Permiso granular, no ladder de roles</div>
-                        <div class="decision-val">Bancos tiene UNA capacidad puntual (<code>carga-manual-saldos</code>).
-                            Inventar admin/editor/lector sería artificial.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">Admin bypass sin fila en permisos</div>
-                        <div class="decision-val">Un admin puede todo automáticamente. No necesita asignación explícita
-                            del permiso.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">Fail-closed en cada salida</div>
-                        <div class="decision-val">Sin <code>user_id</code>, sin <code>company_id</code>, o con
-                            <code>permiso_key</code> inválida → deniega siempre, nunca permite.</div>
-                    </div>
-                    <div class="decision">
-                        <div class="decision-key">Soft delete para eliminación</div>
-                        <div class="decision-val">Trazabilidad completa: quién cargó y quién eliminó siempre queda
-                            registrado en el historial.</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══ Footer ════════════════════════════════ -->
-            <footer
-                style="margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center;">
-                <p style="font-size: 12px; color: var(--text-dim);">
-                    Tool Bancos — TRASA Intranet &nbsp;·&nbsp; Generado el 23/09/2026
-                </p>
-            </footer>
-
-        </div>
-        </main>
-    </div>
-
-    <!-- Back Button -->
-    <a href="index.html"
-        style="position: fixed; bottom: 24px; left: 24px; z-index: 200; display: flex; align-items: center; gap: 8px; background: var(--bg-surface); color: var(--text); padding: 10px 20px; border-radius: 999px; border: 1px solid var(--border-accent); font-size: 13px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-        Volver al inicio
-    </a>
-
-    <script>
-        // ── Mermaid init ────────────────────────────
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'dark',
-            themeVariables: {
-                primaryColor: '#1e3a5f',
-                primaryTextColor: '#e2e8f0',
-                primaryBorderColor: '#3b82f6',
-                lineColor: '#475569',
-                secondaryColor: '#1a2234',
-                tertiaryColor: '#111827',
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '13px',
-            },
-            flowchart: { curve: 'monotoneX', padding: 16 },
-        });
-
-        // ── Active nav tracking ─────────────────────
-        const links = document.querySelectorAll('.sidebar a');
-        const sections = [];
-        links.forEach(a => {
-            const id = a.getAttribute('href')?.slice(1);
-            if (id) {
-                const el = document.getElementById(id);
-                if (el) sections.push({ el, a });
-            }
-        });
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    links.forEach(l => l.classList.remove('active'));
-                    const match = sections.find(s => s.el === entry.target);
-                    if (match) match.a.classList.add('active');
-                }
-            });
-        }, { rootMargin: '-80px 0px -70% 0px' });
-
-        sections.forEach(s => observer.observe(s.el));
-    </script>
+  <!-- Barra Lateral (Navegación) -->
+  <aside class="sidebar">
+    <h1>🏦 Bancos | Instructivo</h1>
+    <nav>
+      <ul>
+        <li><a href="#introduccion">1. Introducción</a></li>
+        <li><a href="#dashboard">2. Dashboard</a></li>
+        <li><a href="#saldos">3. Saldos</a></li>
+        <li><a href="#historico">4. Histórico</a></li>
+        <li><a href="#maestro">5. Maestro de Cuentas</a></li>
+        <li><a href="#carga-manual">6. Carga Manual</a></li>
+        <li><a href="#permisos">7. Permisos y Accesos</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenido Principal -->
+  <main class="main-content">
+   <div class="main-content-inner">
+
+    <section id="introduccion">
+      <h2>1. Introducción</h2>
+      <p>Bienvenido al <strong>Módulo de Bancos</strong> de la Intranet. Esta herramienta te permite centralizar y consultar toda la información relacionada con las cuentas bancarias del grupo Trasa.</p>
+      <p>Aquí podrás ver los saldos actuales, consultar el historial de movimientos de días anteriores, ver el listado completo de las cuentas registradas y, si tenés los permisos necesarios, cargar saldos manualmente para aquellas cuentas que no se actualizan de forma automática.</p>
+    </section>
+
+    <section id="dashboard">
+      <h2>2. Dashboard (Panel Principal)</h2>
+      <p>El <strong>Dashboard</strong> es la pantalla de inicio del módulo. Te brinda un resumen rápido y visual del estado del dinero en las cuentas.</p>
+      
+      <div class="card">
+        <div class="card-title"><span class="icon">📊</span> ¿Qué vas a encontrar acá?</div>
+        <ul>
+          <li><strong>Resumen Total:</strong> Te muestra el dinero total disponible, sumando todas las cuentas, expresado en la moneda correspondiente (Pesos y Dólares).</li>
+          <li><strong>Gráficos por Banco y Empresa:</strong> Gráficos que te permiten ver rápidamente qué banco o qué empresa concentra la mayor parte del dinero.</li>
+          <li><strong>Cuentas Favoritas:</strong> Un acceso rápido a las cuentas que hayas marcado con una "estrellita" en la sección de Saldos, para no tener que buscarlas todos los días.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="saldos">
+      <h2>3. Saldos</h2>
+      <p>En la pestaña <strong>Saldos</strong> vas a encontrar el detalle del dinero disponible en cada una de las cuentas bancarias <strong>al día de hoy</strong> (o a la fecha de la última actualización disponible).</p>
+      
+      <div class="card">
+        <div class="card-title"><span class="icon">💰</span> Funcionalidades principales</div>
+        <ul>
+          <li><strong>Listado de cuentas:</strong> Una tabla completa con la empresa, el banco, el número de cuenta, la moneda y el saldo actual.</li>
+          <li><strong>Cuentas Favoritas:</strong> Al lado de cada cuenta vas a ver una estrella. Si hacés clic en ella, esa cuenta pasará a ser "Favorita" y te aparecerá primero en el listado y en tu Dashboard.</li>
+          <li><strong>Filtros rápidos:</strong> Podés buscar cuentas específicas usando la barra de búsqueda o filtrando por Banco, Empresa o Moneda.</li>
+          <li><strong>Exportar:</strong> Tenés un botón para descargar esta información a un archivo Excel o CSV si lo necesitás para armar reportes.</li>
+        </ul>
+      </div>
+      
+      <div class="note">
+        <strong>¿De dónde sale esta información?</strong><br>
+        Algunas cuentas se actualizan solas (automáticas) conectándose directamente con los bancos. Otras cuentas, en cambio, requieren que alguien de nuestro equipo ingrese el saldo a mano ("Carga Manual"). En la tabla podrás ver cuándo fue la última vez que se actualizó cada saldo.
+      </div>
+    </section>
+
+    <section id="historico">
+      <h2>4. Histórico</h2>
+      <p>Si necesitás saber cuánto dinero había en una cuenta <strong>en el pasado</strong>, esta es la sección que tenés que usar.</p>
+      
+      <p>Pasos para consultar el historial:</p>
+      <ol>
+        <li>Ingresá a la sección <strong>Histórico</strong> en el menú lateral.</li>
+        <li>Seleccioná el rango de fechas que querés consultar usando los calendarios de <strong>"Desde"</strong> y <strong>"Hasta"</strong>.</li>
+        <li>La pantalla te mostrará cómo cerró el saldo de cada cuenta en los días que elegiste.</li>
+        <li>Podés usar los filtros para ver solo el historial de un Banco o una Empresa en particular.</li>
+      </ol>
+      <p><em>Nota: Podés consultar como máximo un rango de hasta 3 meses (92 días) al mismo tiempo.</em></p>
+    </section>
+
+    <section id="maestro">
+      <h2>5. Maestro de Cuentas</h2>
+      <p>El <strong>Maestro de Cuentas</strong> es como el "padrón" o la "guía telefónica" de nuestras cuentas bancarias. Aquí no vas a ver los saldos, sino la <strong>información administrativa</strong> de cada cuenta registrada en la empresa.</p>
+
+      <div class="card">
+        <div class="card-title"><span class="icon">📋</span> Información disponible</div>
+        <p>En este listado podrás consultar datos fijos como:</p>
+        <ul>
+          <li>A qué Empresa y Banco pertenece la cuenta.</li>
+          <li>El tipo de cuenta (Cuenta Corriente, Caja de Ahorro, etc.) y su moneda.</li>
+          <li>Si la cuenta es de actualización "Automática" o "Manual".</li>
+          <li>El estado de la cuenta (si está Habilitada o no).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="carga-manual">
+      <h2>6. Carga Manual</h2>
+      <p>Como mencionamos antes, hay cuentas que no se pueden conectar automáticamente con los bancos. Para que el sistema sepa cuánto dinero hay en ellas, se deben registrar a mano en esta sección.</p>
+      
+      <div class="note">
+        <strong>Importante:</strong> Esta sección <strong>solo es visible</strong> para los usuarios que tienen asignado el permiso de cargar saldos. Si no tenés este permiso, no verás esta opción en el menú.
+      </div>
+
+      <h3>¿Cómo cargar un saldo a mano (Carga individual)?</h3>
+      <ol>
+        <li>Entrá a <strong>Gestión > Carga manual</strong>. En la pestaña "Cuentas" vas a ver la lista de las cuentas habilitadas para carga manual.</li>
+        <li>Buscá la cuenta que querés actualizar y hacé clic en el botón con el ícono de suma (<strong>⊕</strong>) que está al final de la fila.</li>
+        <li>Se abrirá una ventana donde debés indicar:
+          <ul>
+            <li><strong>Fecha del saldo:</strong> el día al que corresponde ese dinero (por defecto es hoy, no podés poner fechas futuras).</li>
+            <li><strong>Saldo:</strong> el monto exacto de dinero (podés poner números con coma, e incluso números negativos si la cuenta está en descubierto).</li>
+            <li><strong>Observaciones:</strong> un texto opcional si querés dejar alguna aclaración (ej: "Saldo según extracto de papel").</li>
+          </ul>
+        </li>
+        <li>Hacé clic en <strong>Confirmar</strong>. ¡Listo! El nuevo saldo ya está visible para todos.</li>
+      </ol>
+
+      <h3>¿Cómo cargar muchos saldos juntos (Importar Excel)?</h3>
+      <p>Si tenés que cargar muchas cuentas a la vez, es más fácil usar un Excel:</p>
+      <ol>
+        <li>En la misma pantalla, hacé clic en el botón <strong>"Importar Excel"</strong> arriba a la derecha.</li>
+        <li>Hacé clic en <strong>"Descargar plantilla"</strong>. Esto te bajará un Excel que ya tiene los nombres de todas las cuentas listos.</li>
+        <li>Abrí el Excel y completá únicamente la <strong>Fecha del saldo</strong> y el <strong>Saldo</strong> de las cuentas que necesites actualizar. Lo demás dejalo vacío. Guardá el archivo.</li>
+        <li>Volvé a la intranet y subí ese Excel que guardaste.</li>
+        <li>Hacé clic en <strong>"Validar archivo"</strong>. El sistema revisará que los datos estén bien (sin guardar nada todavía).</li>
+        <li>Si todo está correcto, hacé clic en <strong>"Continuar y guardar"</strong>.</li>
+      </ol>
+
+      <h3>Registro de Cargas</h3>
+      <p>Al lado de la pestaña de "Cuentas", tenés una pestaña llamada <strong>"Registro de cargas"</strong>. Es un historial de auditoría: ahí podés ver el detalle de todos los saldos manuales que se cargaron, quién los cargó, qué día y a qué hora.</p>
+    </section>
+
+    <section id="permisos">
+      <h2>7. Permisos y Accesos</h2>
+      <p>Para mantener la seguridad y el orden de la información, el módulo de Bancos tiene diferentes niveles de acceso según el rol de cada persona.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nivel de Acceso</th>
+            <th>¿Qué podés hacer?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Usuario General</strong><br><small>(Cualquiera que pueda entrar al módulo)</small></td>
+            <td>
+              <ul>
+                <li>Ver el Dashboard</li>
+                <li>Ver y descargar los Saldos actuales</li>
+                <li>Consultar el Histórico</li>
+                <li>Ver el Maestro de Cuentas (solo lectura)</li>
+                <li>Marcar cuentas como favoritas</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Cargador de Saldos</strong><br><small>(Requiere permiso especial)</small></td>
+            <td>
+              <em>Todo lo del nivel anterior, más:</em>
+              <ul>
+                <li>Entrar a la sección "Carga manual"</li>
+                <li>Cargar saldos individualmente o por Excel</li>
+                <li>Ver el registro histórico de quién cargó saldos a mano</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Administrador del Módulo</strong><br><small>(Solo encargados de la herramienta)</small></td>
+            <td>
+              <em>Todo lo del nivel anterior, más:</em>
+              <ul>
+                <li>Acceder a "Configuración"</li>
+                <li>Crear nuevas cuentas bancarias o editarlas</li>
+                <li>Habilitar o deshabilitar cuentas</li>
+                <li>Dar o quitar permiso a otras personas para que puedan hacer Carga Manual</li>
+                <li>Eliminar errores en cargas manuales</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><em>Si necesitás cargar saldos y no podés ver la opción en el menú, contactate con un Administrador del módulo para que te habilite el permiso.</em></p>
+    </section>
+
+   </div>
+  </main>
+
+  <!-- Back Button -->
+  <a href="index.html" class="back-btn">
+    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+    Volver al inicio
+  </a>
 </body>
-
 </html>

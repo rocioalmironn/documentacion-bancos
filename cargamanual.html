@@ -36,15 +36,19 @@
         }
     </script>
     <style>
+        html {
+            background-color: #01184C;
+        }
+
         body {
             width: 1920px;
             height: 1080px;
             overflow: auto;
-            background-color: #F7F9FC;
-            color: #01184C;
+            background-color: #01184C;
+            color: #FFFFFF;
             font-family: 'Geist', system-ui, sans-serif;
             scrollbar-width: thin;
-            scrollbar-color: rgba(1, 24, 76, 0.18) transparent;
+            scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
         }
 
         body::-webkit-scrollbar {
@@ -57,12 +61,12 @@
         }
 
         body::-webkit-scrollbar-thumb {
-            background-color: rgba(1, 24, 76, 0.15);
+            background-color: rgba(255, 255, 255, 0.18);
             border-radius: 999px;
         }
 
         body::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(1, 24, 76, 0.28);
+            background-color: rgba(255, 255, 255, 0.32);
         }
 
         .slide-container {
@@ -79,8 +83,8 @@
         .grid-bg {
             background-size: 40px 40px;
             background-image:
-                linear-gradient(to right, rgba(1, 24, 76, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(1, 24, 76, 0.03) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
     </style>
 </head>
@@ -89,23 +93,21 @@
     <div class="slide-container">
 
         <!-- Top Header -->
-        <header class="flex items-center justify-between border-b border-[#E2E8F0] pb-6">
+        <header class="flex items-center justify-between border-b border-white/10 pb-6">
             <div class="flex items-center space-x-6">
                 <!-- Trasa Logo with B Corp badge -->
-                <div class="bg-white px-4 py-2 rounded-xl border border-[#E2E8F0] shadow-sm flex items-center">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyCgT6891NKyNM5bavZXpFMlfMv4kewzZCb9uEPqIZwi6f8vsb0_FNSExgO4cXyRoMVu2K190iRn_bXH3tmdzJu6GDxZQ7nccUp6yC9fg0Us_Y8mjtY60AyO6hwbGtnYWMj6uFp-npS50YoyoXPWjO3WSKSPNLBYYWHEWeBNrB8xitChCKQAZkG0_8rtr14jb57Pml-8JcyjVL3y6mljmJJGNXFfCy-7uG7pff0j5O1HXU9xcWPOy-FqluLr9Ejo9TE4M"
-                        alt="Trasa - Empresa B Certificada" class="h-8 w-auto object-contain filter invert">
-                </div>
-                <div class="h-8 w-[1px] bg-[#E2E8F0]"></div>
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyCgT6891NKyNM5bavZXpFMlfMv4kewzZCb9uEPqIZwi6f8vsb0_FNSExgO4cXyRoMVu2K190iRn_bXH3tmdzJu6GDxZQ7nccUp6yC9fg0Us_Y8mjtY60AyO6hwbGtnYWMj6uFp-npS50YoyoXPWjO3WSKSPNLBYYWHEWeBNrB8xitChCKQAZkG0_8rtr14jb57Pml-8JcyjVL3y6mljmJJGNXFfCy-7uG7pff0j5O1HXU9xcWPOy-FqluLr9Ejo9TE4M"
+                    alt="Trasa - Empresa B Certificada" class="h-8 md:h-10 object-contain brightness-100">
+                <div class="h-8 w-[1px] bg-white/20"></div>
                 <div>
-                    <p class="text-xs font-semibold tracking-wider text-brand-muted uppercase font-sans">Trasa Intranet
+                    <p class="text-xs font-semibold tracking-wider text-white/60 uppercase font-sans">Trasa Intranet
                         · Herramientas Corporativas</p>
-                    <h2 class="text-base font-bold text-brand-navy font-display tracking-tight">Presentación de la tool:
+                    <h2 class="text-base font-bold text-white font-display tracking-tight">Presentación de la tool:
                         Bancos</h2>
                 </div>
             </div>
             <div class="flex items-center space-x-3">
-                <span class="text-xs font-semibold text-brand-muted uppercase tracking-wider">Documentación
+                <span class="text-xs font-semibold text-white/60 uppercase tracking-wider">Documentación
                     Funcional</span>
                 <div
                     class="px-3.5 py-1.5 rounded-full bg-[#1777FF]/10 text-brand-blue font-semibold text-xs tracking-wide border border-[#1777FF]/20 flex items-center gap-1.5">
@@ -126,38 +128,38 @@
             <div class="col-span-4 flex flex-col justify-between space-y-6">
 
                 <!-- Bloque Principal de Título & Acceso -->
-                <div class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm relative overflow-hidden">
+                <div class="bg-white/5 rounded-2xl p-7 border border-white/10 backdrop-blur-md relative overflow-hidden">
                     <div
                         class="absolute -top-10 -right-10 w-32 h-32 bg-[#1777FF]/5 rounded-full blur-2xl pointer-events-none">
                     </div>
 
                     <div
-                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#01184C]/5 text-[#01184C] font-semibold text-xs uppercase tracking-wider mb-4 border border-[#01184C]/10">
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white font-semibold text-xs uppercase tracking-wider mb-4 border border-white/15">
                         <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
                         Sección Operativa (Sidebar: Gestión)
                     </div>
 
-                    <h1 class="text-3xl font-extrabold text-brand-navy font-display tracking-tight mb-2">
+                    <h1 class="text-3xl font-extrabold text-white font-display tracking-tight mb-2">
                         Bancos — Guía: Carga manual
                     </h1>
 
                     <!-- Metadatos de Ruta y Acceso -->
-                    <div class="mt-4 p-3.5 bg-[#F7F9FC] rounded-xl border border-[#E2E8F0] space-y-2 text-xs">
+                    <div class="mt-4 p-3.5 bg-white/5 rounded-xl border border-white/10 space-y-2 text-xs">
                         <div class="flex items-center justify-between">
-                            <span class="text-brand-muted font-medium">Ruta del sistema:</span>
+                            <span class="text-white/60 font-medium">Ruta del sistema:</span>
                             <code
-                                class="font-mono bg-white px-2 py-0.5 rounded text-brand-blue font-semibold border border-[#E2E8F0]">/tools/bancos/carga-manual</code>
+                                class="font-mono bg-white/10 px-2 py-0.5 rounded text-brand-blue font-semibold border border-white/10">/tools/bancos/carga-manual</code>
                         </div>
-                        <div class="flex items-center justify-between pt-1 border-t border-[#E2E8F0]/60">
-                            <span class="text-brand-muted font-medium">Nivel de Acceso:</span>
-                            <span class="font-semibold text-brand-navy flex items-center gap-1">
-                                <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="flex items-center justify-between pt-1 border-t border-white/10">
+                            <span class="text-white/60 font-medium">Nivel de Acceso:</span>
+                            <span class="font-semibold text-white flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 Permiso <code
-                                    class="font-mono bg-emerald-50 text-emerald-700 px-1 rounded">carga-manual-saldos</code>
+                                    class="font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1 rounded">carga-manual-saldos</code>
                                 y Admins
                             </span>
                         </div>
@@ -166,28 +168,28 @@
 
                 <!-- Para qué sirve -->
                 <div
-                    class="bg-white rounded-2xl p-7 border border-[#E2E8F0] shadow-sm flex-1 flex flex-col justify-center">
+                    class="bg-white/5 rounded-2xl p-7 border border-white/10 backdrop-blur-md flex-1 flex flex-col justify-center">
                     <div class="flex items-center gap-3 mb-3">
                         <div
-                            class="w-9 h-9 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center font-bold">
+                            class="w-9 h-9 rounded-xl bg-blue-500/20 text-brand-blue border border-blue-500/30 flex items-center justify-center font-bold">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="font-display font-bold text-lg text-brand-navy">¿Para qué sirve?</h3>
+                        <h3 class="font-display font-bold text-lg text-white">¿Para qué sirve?</h3>
                     </div>
 
-                    <div class="border-l-4 border-brand-blue pl-4 py-1 mb-4 bg-blue-50/40 rounded-r-xl">
-                        <p class="text-[15px] font-medium text-brand-navy leading-relaxed">
+                    <div class="border-l-4 border-brand-blue pl-4 py-1 mb-4 bg-blue-500/10 rounded-r-xl">
+                        <p class="text-[15px] font-medium text-white leading-relaxed">
                             Registrar saldos de cuentas que <strong class="font-extrabold text-brand-blue">NO</strong>
                             estan automatizadas&nbsp;</p>
                     </div>
 
-                    <p class="text-sm text-brand-muted leading-relaxed">
+                    <p class="text-sm text-white/60 leading-relaxed">
                         Cada carga es un registro nuevo . Si cargás otro saldo para la misma cuenta y la misma fecha,
-                        <strong class="text-brand-navy font-semibold">la nueva carga pasa a ser la vigente</strong> en
+                        <strong class="text-white font-semibold">la nueva carga pasa a ser la vigente</strong> en
                         el sistema.
                     </p>
                 </div>
@@ -199,19 +201,19 @@
                 <div class="grid grid-cols-2 gap-6">
                     <!-- Card: Modalidades (Pestaña Cuentas) -->
                     <div
-                        class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm flex flex-col justify-between">
+                        class="bg-white/5 rounded-2xl p-6 border border-white/10 backdrop-blur-md flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                                        class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center font-bold">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12">
                                             </path>
                                         </svg>
                                     </div>
-                                    <h3 class="font-display font-bold text-base text-brand-navy">Modalidades&nbsp; de
+                                    <h3 class="font-display font-bold text-base text-white">Modalidades&nbsp; de
                                         carga</h3>
                                 </div>
                             </div>
@@ -219,7 +221,7 @@
                                 <!-- Unitaria -->
                                 <div class="flex items-start gap-3">
                                     <div
-                                        class="w-6 h-6 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                                        class="w-6 h-6 rounded-md bg-white/10 text-white/70 border border-white/15 flex items-center justify-center shrink-0 mt-0.5">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122">
@@ -227,8 +229,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h4 class="text-xs font-bold text-brand-navy">Carga unitaria</h4>
-                                        <p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">
+                                        <h4 class="text-xs font-bold text-white">Carga unitaria</h4>
+                                        <p class="text-[11px] text-white/60 leading-relaxed mt-0.5">
                                             Botón de carga en la fila de la cuenta. Requiere: <strong>fecha del
                                                 saldo</strong>, <strong>saldo</strong> y <strong>observaciones</strong>
                                             (opcional, máx. 255 char).
@@ -238,7 +240,7 @@
                                 <!-- Masiva Excel -->
                                 <div class="flex items-start gap-3">
                                     <div
-                                        class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                                        class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
@@ -246,14 +248,14 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h4 class="text-xs font-bold text-brand-navy">Carga masiva por Excel</h4>
+                                        <h4 class="text-xs font-bold text-white">Carga masiva por Excel</h4>
                                         <ul
-                                            class="text-[11px] text-brand-muted leading-relaxed mt-1 list-disc pl-3 space-y-0.5">
+                                            class="text-[11px] text-white/60 leading-relaxed mt-1 list-disc pl-3 space-y-0.5">
                                             <li class=""><strong>Descargar plantilla:</strong> Trae cuentas cargables.
                                             </li>
                                             <li class="">Completar fecha y saldo.</li>
                                             <li class="">Importar Excel (XLSX, XLS, CSV).</li>
-                                            <li class=""><strong class="text-red-600">Todo o nada:</strong> Si una fila
+                                            <li class=""><strong class="text-rose-400">Todo o nada:</strong> Si una fila
                                                 tiene error, es detectado como una carga con fecha futura y no nes
                                                 cargada.</li>
                                         </ul>
@@ -264,46 +266,46 @@
                     </div>
                     <!-- Card: Reglas de Datos -->
                     <div
-                        class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm flex flex-col justify-between">
+                        class="bg-white/5 rounded-2xl p-6 border border-white/10 backdrop-blur-md flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                                        class="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center font-bold">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
                                             </path>
                                         </svg>
                                     </div>
-                                    <h3 class="font-display font-bold text-base text-brand-navy">Reglas de los Datos
+                                    <h3 class="font-display font-bold text-base text-white">Reglas de los Datos
                                     </h3>
                                 </div>
                                 <span
-                                    class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-red-50 text-red-700">Validación
+                                    class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30">Validación
                                     Estricta</span>
                             </div>
                             <div class="space-y-3">
-                                <div class="bg-[#F7F9FC] p-3 rounded-xl border border-[#E2E8F0]">
-                                    <h4 class="text-xs font-bold text-brand-navy mb-1">Formato Argentino Estricto</h4>
-                                    <p class="text-[11px] text-brand-muted leading-relaxed">
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <h4 class="text-xs font-bold text-white mb-1">Formato Argentino Estricto</h4>
+                                    <p class="text-[11px] text-white/60 leading-relaxed">
                                         Punto para miles, coma para decimales.
                                         <span
-                                            class="text-emerald-600 font-bold bg-emerald-50 px-1 rounded inline-block mt-1">1.234,56</span>
+                                            class="text-emerald-400 font-bold bg-emerald-500/20 border border-emerald-500/30 px-1 rounded inline-block mt-1">1.234,56</span>
                                         o
                                         <span
-                                            class="text-emerald-600 font-bold bg-emerald-50 px-1 rounded inline-block mt-1">1234,56</span>
+                                            class="text-emerald-400 font-bold bg-emerald-500/20 border border-emerald-500/30 px-1 rounded inline-block mt-1">1234,56</span>
                                         son válidos.
                                     </p>
-                                    <p class="text-[11px] text-red-500 font-medium leading-relaxed mt-1">
-                                        Formatos como <code class="bg-red-50 px-1 rounded">1234.56</code> o <code
-                                            class="bg-red-50 px-1 rounded">1.5</code> se rechazan. Negativo =
+                                    <p class="text-[11px] text-rose-400 font-medium leading-relaxed mt-1">
+                                        Formatos como <code class="bg-rose-500/20 px-1 rounded">1234.56</code> o <code
+                                            class="bg-rose-500/20 px-1 rounded">1.5</code> se rechazan. Negativo =
                                         descubierto.
                                     </p>
                                 </div>
 
-                                <ul class="text-[11px] text-brand-muted leading-relaxed list-disc pl-4 space-y-1 mt-2">
-                                    <li class=""><strong class="text-brand-navy">Fechas:</strong> <code
+                                <ul class="text-[11px] text-white/60 leading-relaxed list-disc pl-4 space-y-1 mt-2">
+                                    <li class=""><strong class="text-white">Fechas:</strong> <code
                                             class="font-mono">DD/MM/AAAA</code> o <code
                                             class="font-mono">AAAA-MM-DD</code>. No puede ser futura.</li>
                                     <li class="">Incompletas (fecha sin saldo o viceversa) generan error. Filas vacías
@@ -319,26 +321,26 @@
                 <div class="grid grid-cols-2 gap-6">
 
                     <!-- Historial y Correcciones -->
-                    <div class="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
+                    <div class="bg-white/5 rounded-2xl p-6 border border-white/10 backdrop-blur-md">
                         <div class="flex items-center gap-3 mb-3">
                             <div
-                                class="w-7 h-7 rounded-lg bg-blue-50 text-brand-blue flex items-center justify-center font-bold">
+                                class="w-7 h-7 rounded-lg bg-blue-500/20 text-brand-blue border border-blue-500/30 flex items-center justify-center font-bold">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
-                            <h3 class="font-display font-bold text-[15px] text-brand-navy">Registro y Corrección</h3>
+                            <h3 class="font-display font-bold text-[15px] text-white">Registro y Corrección</h3>
                         </div>
 
-                        <p class="text-xs text-brand-muted leading-relaxed mb-3">
+                        <p class="text-xs text-white/60 leading-relaxed mb-3">
                             La pestaña <strong>Registro de cargas</strong> muestra el historial de quién cargó qué y
                             cuándo. Las cargas eliminadas siguen apareciendo con el estado <span
-                                class="text-red-500 italic">Eliminada</span>.
+                                class="text-rose-400 italic">Eliminada</span>.
                         </p>
                         <div class="border-l-2 border-brand-blue pl-3 py-0.5">
-                            <h4 class="text-[11px] font-bold text-brand-navy">Para corregir un error:</h4>
-                            <p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">
+                            <h4 class="text-[11px] font-bold text-white">Para corregir un error:</h4>
+                            <p class="text-[11px] text-white/60 leading-relaxed mt-0.5">
                                 No se edita. Se carga de nuevo el valor correcto para la misma cuenta y fecha. Esta
                                 quedara como "VIGENTE" y la caraga anterior como "REEMPLAZADA".<br>&nbsp;Solo un usuario
                                 con permiso de&nbsp;<strong>admin de bancos</strong> puede eliminar la carga .
@@ -353,18 +355,18 @@
 
         <!-- Bottom Footer Strip -->
         <footer
-            class="flex items-center justify-between border-t border-[#E2E8F0] pt-4 text-xs text-brand-muted font-sans">
+            class="flex items-center justify-between border-t border-white/10 pt-4 text-xs text-white/60 font-sans">
             <div class="flex items-center space-x-2">
-                <span class="font-medium text-brand-navy">Trasa Intranet</span>
+                <span class="font-medium text-white">Trasa Intranet</span>
                 <span class="">·</span>
                 <span class="">Tool Bancos</span>
                 <span class="">·</span>
-                <span class="text-slate-400">Confidencial - Uso Interno</span>
+                <span class="text-white/40">Confidencial - Uso Interno</span>
             </div>
             <div class="flex items-center space-x-4">
-                <span class="font-mono text-[11px] text-slate-400">1920 × 1080 (16:9)</span>
+                <span class="font-mono text-[11px] text-white/40">1920 × 1080 (16:9)</span>
                 <span
-                    class="font-bold tracking-widest text-brand-navy uppercase text-[11px] bg-slate-100 px-2 py-0.5 rounded">HOJA
+                    class="font-bold tracking-widest text-white uppercase text-[11px] bg-white/10 px-2 py-0.5 rounded">HOJA
                     06 / 06</span>
             </div>
         </footer>
