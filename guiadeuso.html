@@ -41,17 +41,33 @@
         body {
             width: 1920px;
             height: 1080px;
-            overflow: hidden;
+            overflow: auto;
             margin: 0;
             background-color: #01184C;
             font-family: 'Geist', sans-serif;
             color: #FFFFFF;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+        }
+        body::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+        }
+        body::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(255, 255, 255, 0.32);
         }
     </style>
 </head>
 
 <body
-    class="w-[1920px] h-[1080px] relative flex flex-col justify-between p-24 select-none bg-[#01184C] overflow-hidden">
+    class="w-[1920px] h-[1080px] relative flex flex-col justify-between p-24 select-none bg-[#01184C]">
 
     <!-- Subtle architectural background accents -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
